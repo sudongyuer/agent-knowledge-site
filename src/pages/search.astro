@@ -12,7 +12,7 @@ import Base from '../layouts/Base.astro';
     <div id="search"></div>
     <noscript>搜索需要启用 JavaScript。</noscript>
     <p class="empty" id="search-unavailable" hidden>
-      搜索索引尚未生成。请先运行 <code>pnpm build</code>，再用 <code>pnpm preview</code> 打开本页。
+      搜索暂时不可用，请稍后再试，或从顶部导航浏览简报、Prompt 和 Skill。
     </p>
   </div>
   <script is:inline src="/pagefind/pagefind-ui.js" onerror="document.getElementById('search-unavailable').hidden = false"
@@ -63,6 +63,11 @@ import Base from '../layouts/Base.astro';
   #search .pagefind-ui__search-input:focus {
     outline: none;
     background: var(--pill-hover);
+  }
+
+  #search .pagefind-ui__search-input:focus-visible {
+    outline: 2px solid var(--text);
+    outline-offset: 2px;
   }
 
   #search .pagefind-ui__search-clear {

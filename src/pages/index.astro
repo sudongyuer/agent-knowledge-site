@@ -17,7 +17,7 @@ const tags = countBy(prompts.flatMap((p) => p.data.tags));
 const { headings } = await render((await getEntry('factory', 'blueprint'))!);
 const chapters = headings.filter((h) => h.depth === 2 && /^\d+\./.test(h.text));
 const concepts = briefs.filter(({ meta }) => meta.conceptName).slice(0, 5);
-const latestBrief = briefs.find(({ meta }) => meta.concept)?.meta;
+const latestBrief = briefs[0]?.meta;
 
 const index = [
   {
@@ -54,24 +54,37 @@ const index = [
 <Base title="Agent 知识站" layout="wide">
   <section class="hero">
     <h1>Agent 知识站</h1>
-    <p>
-      bot 收集的 agent 工程资料：每日简报、Prompt 库、Skill 库、软件工厂蓝图。<br />{briefs.length} 期简报，{prompts.length} 条 Prompt，{skill.length} 个 Skill，持续更新。
-    </p>
-    <div class="hero__actions">
-      <a class="pill-btn pill-btn--dark" href="/prompts/">浏览 Prompt</a>
-      {latestBrief && <a class="pill-btn" href={`/briefs/${latestBrief.id}/`}>今日简报 →</a>}
-    </div>
+    <p>bot 每天收集的 agent 工程资料：{briefs.length} 期简报、{prompts.length} 条 Prompt、{skill.length} 个 Skill，还有一份软件工厂蓝图。</p>
+    {
+      latestBrief && (
+        <a class="pill-btn" href={`/briefs/${latestBrief.id}/`}>
+          最新简报 · {latestBrief.date} →
+        </a>
+      )
+    }
   </section>
 
-  <nav class="index" aria-label="分类索引">
+  <h2 class="visually-hidden">资料库</h2>
+  <LibraryToolbar categories={categories} kinds={['Prompt', '简报', 'Skill']} />
+
+  <ul class="lib-grid" data-grid>
+    {prompt.map((item) => <LibraryCard item={item} />)}
+    {brief.map((item) => <LibraryCard item={item} hidden />)}
+    {skill.map((item) => <LibraryCard item={item} hidden />)}
+  </ul>
+
+  <nav class="index" aria-labelledby="index-heading">
+    <h2 id="index-heading" class="section-title">按主题浏览</h2>
     {
       index.map((col) => (
         <div>
-          <h2>{col.heading}</h2>
+          <h3>{col.heading}</h3>
           <ul>
             {col.links.map((l) => (
               <li>
-                <a href={l.href}>{l.label}</a>
+                <a href={l.href} title={l.label}>
+                  {l.label}
+                </a>
               </li>
             ))}
           </ul>
@@ -82,53 +95,48 @@ const index = [
       ))
     }
   </nav>
-
-  <LibraryToolbar categories={categories} kinds={['Prompt', '简报', 'Skill']} />
-
-  <ul class="lib-grid" data-grid>
-    {prompt.map((item) => <LibraryCard item={item} />)}
-    {brief.map((item) => <LibraryCard item={item} hidden />)}
-    {skill.map((item) => <LibraryCard item={item} hidden />)}
-  </ul>
 </Base>
 
 <style>
   .hero {
-    padding: clamp(3rem, 8vw, 6.5rem) 0 clamp(2.5rem, 6vw, 4.5rem);
+    padding: clamp(1.5rem, 4vw, 3rem) 0 clamp(1.75rem, 4vw, 2.75rem);
     text-align: center;
   }
 
   h1 {
     margin: 0;
-    font-size: clamp(2.75rem, 1.8rem + 4.6vw, 5.25rem);
+    font-size: clamp(2.25rem, 1.75rem + 2.2vw, 3.5rem);
     font-weight: 700;
-    line-height: 1.02;
-    letter-spacing: -0.045em;
+    line-height: 1.05;
+    letter-spacing: -0.04em;
   }
 
   .hero p {
-    margin: 1.25rem auto 0;
+    margin: 0.75rem auto 1.25rem;
     max-width: 40rem;
     color: var(--text-muted);
-    font-size: clamp(1rem, 0.95rem + 0.3vw, 1.15rem);
+    font-size: clamp(0.95rem, 0.9rem + 0.25vw, 1.05rem);
     text-wrap: balance;
-  }
-
-  .hero__actions {
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-    margin-top: 2rem;
   }
 
   .index {
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 2rem;
-    padding: 2rem 0 2.5rem;
+    margin-top: 4rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--border);
   }
 
-  .index h2 {
+  .section-title {
+    grid-column: 1 / -1;
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .index h3 {
     margin: 0 0 0.6rem;
     color: var(--text-muted);
     font-size: 0.78rem;
@@ -152,7 +160,8 @@ const index = [
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    transition: color var(--dur-fast) ease;
+    text-decoration-color: transparent;
+    transition: text-decoration-color var(--dur-fast) ease;
   }
 
   .index__all {
@@ -162,7 +171,8 @@ const index = [
 
   @media (hover: hover) and (pointer: fine) {
     .index li a:hover {
-      color: var(--text-muted);
+      text-decoration-line: underline;
+      text-decoration-color: var(--border-strong);
     }
   }
 

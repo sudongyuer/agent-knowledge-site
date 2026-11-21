@@ -24,7 +24,13 @@ function setLabel(button: HTMLButtonElement, icon: string, text: string) {
   button.innerHTML = `${icon}<span>${text}</span>`;
 }
 
+const announcer = document.createElement('span');
+announcer.className = 'visually-hidden';
+announcer.setAttribute('aria-live', 'polite');
+document.body.append(announcer);
+
 for (const pre of document.querySelectorAll<HTMLPreElement>('.prose pre')) {
+  pre.setAttribute('translate', 'no');
   const wrapper = document.createElement('div');
   wrapper.className = 'code-block';
 
@@ -39,15 +45,16 @@ for (const pre of document.querySelectorAll<HTMLPreElement>('.prose pre')) {
   const button = document.createElement('button');
   button.type = 'button';
   button.className = 'copy-button';
-  button.setAttribute('aria-label', '复制代码');
   setLabel(button, copyIcon, '复制');
   button.addEventListener('click', async () => {
     try {
       await writeClipboard(pre.querySelector('code')?.innerText ?? pre.innerText);
       button.dataset.state = 'done';
       setLabel(button, checkIcon, '已复制');
+      announcer.textContent = '已复制';
     } catch {
       setLabel(button, copyIcon, '复制失败');
+      announcer.textContent = '复制失败，请手动选中文本复制';
     }
     setTimeout(() => {
       delete button.dataset.state;

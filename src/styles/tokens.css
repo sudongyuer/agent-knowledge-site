@@ -14,7 +14,7 @@
 
   --text: light-dark(#0a0a0a, #fafafa);
   --text-2: light-dark(#404040, #c8c8c8);
-  --text-muted: light-dark(#737373, #9a9a9a);
+  --text-muted: light-dark(#666666, #9a9a9a);
   --border: light-dark(#ececec, #262626);
   --border-strong: light-dark(#d9d9d9, #3a3a3a);
 

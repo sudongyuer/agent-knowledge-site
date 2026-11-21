@@ -18,6 +18,7 @@ const sorts = [
   class="toolbar"
   data-toolbar
   data-kind={kinds[0]}
+  data-kinds={JSON.stringify(kinds)}
   data-categories={JSON.stringify(categories.map(([name]) => name))}
 >
   {
@@ -63,6 +64,7 @@ const sorts = [
   }
 </div>
 <p class="empty" data-empty hidden></p>
+<p class="visually-hidden" data-status aria-live="polite"></p>
 
 <style>
   .toolbar {
@@ -178,6 +180,13 @@ const sorts = [
     }
   }
 
+  @media (pointer: coarse) {
+    .seg button,
+    .sorts button {
+      min-height: 2.75rem;
+    }
+  }
+
   @media (max-width: 820px) {
     .toolbar {
       flex-wrap: wrap;
@@ -199,16 +208,19 @@ const sorts = [
   const grid = document.querySelector<HTMLElement>('[data-grid]')!;
   const chips = document.querySelector<HTMLElement>('[data-chips]')!;
   const empty = document.querySelector<HTMLElement>('[data-empty]')!;
+  const status = document.querySelector<HTMLElement>('[data-status]')!;
   const filterToggle = toolbar.querySelector<HTMLButtonElement>('[data-filter-toggle]')!;
   const clearTag = toolbar.querySelector<HTMLButtonElement>('[data-clear-tag]')!;
   const clearTagText = clearTag.querySelector<HTMLElement>('[data-clear-tag-text]')!;
   const order: string[] = JSON.parse(toolbar.dataset.categories ?? '[]');
   const filterKind = toolbar.dataset.kind!;
+  const kinds: string[] = JSON.parse(toolbar.dataset.kinds ?? '[]');
+  const sortKeys = [...toolbar.querySelectorAll<HTMLButtonElement>('[data-sort]')].map((b) => b.dataset.sort!);
   const cards = [...grid.querySelectorAll<HTMLLIElement>('.lib-card')];
   const params = new URLSearchParams(location.search);
   const state = {
-    kind: filterKind,
-    sort: 'latest',
+    kind: kinds.includes(params.get('kind') ?? '') ? params.get('kind')! : filterKind,
+    sort: sortKeys.includes(params.get('sort') ?? '') ? params.get('sort')! : 'latest',
     category: params.get('category') ?? '',
     tag: params.get('tag') ?? '',
   };
@@ -253,15 +265,18 @@ const sorts = [
     if (!filterable) chips.hidden = true;
     empty.hidden = visible > 0;
     empty.textContent = total ? `没有符合条件的${spaced(filterKind)}。` : `还没有${spaced(state.kind)}。`;
+    status.textContent = `显示 ${visible} 条${spaced(state.kind)}`;
     clearTag.hidden = !state.tag;
     clearTagText.textContent = `#${state.tag}`;
     clearTag.title = `清除标签 #${state.tag}`;
     clearTag.setAttribute('aria-label', `清除标签 #${state.tag}`);
     press('[data-kind-btn]', 'data-kind-btn', state.kind);
     press('[data-sort]', 'data-sort', state.sort);
-    press('[data-category]', 'data-category', state.category);
+    press('[data-chips] [data-category]', 'data-category', state.category);
     filterToggle.setAttribute('aria-expanded', String(!chips.hidden));
     const query = new URLSearchParams();
+    if (state.kind !== filterKind) query.set('kind', state.kind);
+    if (isFilterKind && state.sort !== 'latest') query.set('sort', state.sort);
     if (state.category) query.set('category', state.category);
     if (state.tag) query.set('tag', state.tag);
     history.replaceState(null, '', query.size ? `?${query}` : location.pathname);

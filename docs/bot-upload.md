@@ -24,22 +24,31 @@
 
 ## 上传步骤
 
+下面的命令以 prompt-collector 为例。其他 bot 要把 `BOT` 换成自己的名字（agent-practice、factory-architect 或 skill-collector），`DIR` 换成上表里自己的目录。
+
 首次：
 
 ```sh
+BOT=prompt-collector
 git clone https://x-access-token:${GITHUB_TOKEN}@github.com/sudongyuer/agent-knowledge-site.git
 cd agent-knowledge-site
-git config user.name "prompt-collector-bot"
-git config user.email "prompt-collector-bot@users.noreply.github.com"
+git config user.name "${BOT}-bot"
+git config user.email "${BOT}-bot@users.noreply.github.com"
 ```
 
-每次上传：
+每次上传分三步。先拉取最新版本：
 
 ```sh
 git pull --rebase
-# 把新文件写进自己的目录
-git add content-source/prompt-collector
-git commit -m "prompt-collector: 新增 3 条 prompt"
+```
+
+然后把新文件写进自己的目录，最后提交并推送：
+
+```sh
+BOT=prompt-collector
+DIR=content-source/prompt-collector
+git add "$DIR"
+git commit -m "${BOT}: 新增 3 条 prompt"
 git pull --rebase && git push
 ```
 

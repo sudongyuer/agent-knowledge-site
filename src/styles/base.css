@@ -169,6 +169,8 @@ button {
 
 .site-search:focus-within {
   background: var(--pill-hover);
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
 }
 
 .site-search input {
