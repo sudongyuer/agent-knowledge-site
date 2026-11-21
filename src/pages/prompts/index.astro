@@ -15,7 +15,7 @@ const categories = countBy(prompts.map((p) => p.data.category));
 <Base title="Prompt 库" layout="wide">
   <header class="page-header">
     <h1>Prompt <span class="count">{items.length}</span></h1>
-    <p>可直接复制给 coding agent 的 prompt，附场景、已知坑、来源和作者。</p>
+    <p>可复制给 coding agent 的 Prompt，附场景、已知坑、来源和作者。</p>
   </header>
   <SubNav items={promptsNav} />
   <LibraryToolbar categories={categories} />

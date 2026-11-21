@@ -32,7 +32,7 @@ const sorts = [
       </div>
     )
   }
-  <div class="sorts" data-filter-only role="group" aria-label="排序">
+  <div class="sorts" data-filter-only role="group" aria-label="排序和筛选">
     {
       sorts.map((s, i) => (
         <button type="button" data-sort={s.key} aria-pressed={i === 0 ? 'true' : 'false'}>
@@ -63,7 +63,10 @@ const sorts = [
     ))
   }
 </div>
-<p class="empty" data-empty hidden></p>
+<div class="empty" data-empty hidden>
+  <p data-empty-text></p>
+  <button type="button" class="pill-btn" data-reset hidden>清除筛选</button>
+</div>
 <p class="visually-hidden" data-status aria-live="polite"></p>
 
 <style>
@@ -152,7 +155,9 @@ const sorts = [
 
   .chips[hidden],
   [data-filter-only][hidden],
-  [data-clear-tag][hidden] {
+  [data-clear-tag][hidden],
+  [data-reset][hidden],
+  .empty[hidden] {
     display: none;
   }
 
@@ -171,6 +176,10 @@ const sorts = [
     padding: 4rem 0;
     color: var(--text-muted);
     text-align: center;
+  }
+
+  .empty p {
+    margin: 0 0 1rem;
   }
 
   @media (hover: hover) and (pointer: fine) {
@@ -209,6 +218,9 @@ const sorts = [
   const chips = document.querySelector<HTMLElement>('[data-chips]')!;
   const empty = document.querySelector<HTMLElement>('[data-empty]')!;
   const status = document.querySelector<HTMLElement>('[data-status]')!;
+  const emptyText = empty.querySelector<HTMLElement>('[data-empty-text]')!;
+  const reset = empty.querySelector<HTMLButtonElement>('[data-reset]')!;
+  const measure: Record<string, string> = { 简报: '期', Prompt: '条', Skill: '个' };
   const filterToggle = toolbar.querySelector<HTMLButtonElement>('[data-filter-toggle]')!;
   const clearTag = toolbar.querySelector<HTMLButtonElement>('[data-clear-tag]')!;
   const clearTagText = clearTag.querySelector<HTMLElement>('[data-clear-tag-text]')!;
@@ -264,8 +276,9 @@ const sorts = [
     for (const el of document.querySelectorAll<HTMLElement>('[data-filter-only]')) el.hidden = !filterable;
     if (!filterable) chips.hidden = true;
     empty.hidden = visible > 0;
-    empty.textContent = total ? `没有符合条件的${spaced(filterKind)}。` : `还没有${spaced(state.kind)}。`;
-    status.textContent = `显示 ${visible} 条${spaced(state.kind)}`;
+    emptyText.textContent = total ? `没有符合条件的${spaced(filterKind)}。` : `还没有${spaced(state.kind)}。`;
+    reset.hidden = !total;
+    status.textContent = `显示 ${visible} ${measure[state.kind] ?? '条'}${spaced(state.kind)}`;
     clearTag.hidden = !state.tag;
     clearTagText.textContent = `#${state.tag}`;
     clearTag.title = `清除标签 #${state.tag}`;
@@ -289,6 +302,7 @@ const sorts = [
     else if (target.dataset.sort) state.sort = target.dataset.sort;
     else if (target.dataset.category !== undefined) state.category = target.dataset.category;
     else if (target.hasAttribute('data-clear-tag')) state.tag = '';
+    else if (target.hasAttribute('data-reset')) Object.assign(state, { sort: 'latest', category: '', tag: '' });
     else if (target.hasAttribute('data-filter-toggle')) chips.hidden = !chips.hidden;
     else return;
     apply();

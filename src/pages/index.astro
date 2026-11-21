@@ -26,7 +26,7 @@ const index = [
     links: categories.slice(0, 5).map(([name]) => ({ label: name, href: `/prompts/?category=${encodeURIComponent(name)}` })),
   },
   {
-    heading: '标签',
+    heading: 'Prompt 标签',
     all: '/prompts/',
     links: tags.slice(0, 5).map(([name]) => ({ label: name, href: `/prompts/?tag=${encodeURIComponent(name)}` })),
   },
@@ -36,7 +36,7 @@ const index = [
     links: skillCategories.slice(0, 5).map(([name]) => ({ label: name, href: `/skills/?category=${encodeURIComponent(name)}` })),
   },
   {
-    heading: '今日概念',
+    heading: '近期概念',
     all: '/briefs/concepts/',
     links: concepts.map(({ meta }) => ({ label: meta.conceptName!.replace(/（.*$/, ''), href: `/briefs/${meta.id}/` })),
   },
@@ -54,11 +54,11 @@ const index = [
 <Base title="Agent 知识站" layout="wide">
   <section class="hero">
     <h1>Agent 知识站</h1>
-    <p>bot 每天收集的 agent 工程资料：{briefs.length} 期简报、{prompts.length} 条 Prompt、{skill.length} 个 Skill，还有一份软件工厂蓝图。</p>
+    <p>bot 每天收集的 Agent 工程资料：{briefs.length} 期简报、{prompts.length} 条 Prompt、{skill.length} 个 Skill，还有一份软件工厂蓝图。</p>
     {
       latestBrief && (
         <a class="pill-btn" href={`/briefs/${latestBrief.id}/`}>
-          最新简报 · {latestBrief.date} →
+          最新简报 · {latestBrief.date} <span aria-hidden="true">→</span>
         </a>
       )
     }
@@ -89,7 +89,7 @@ const index = [
             ))}
           </ul>
           <a class="text-link index__all" href={col.all}>
-            全部 →
+            全部<span class="visually-hidden">{col.heading}</span> <span aria-hidden="true">→</span>
           </a>
         </div>
       ))

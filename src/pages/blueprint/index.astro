@@ -3,12 +3,13 @@ import { getEntry, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import SubNav from '../../components/SubNav.astro';
 import Icon from '../../components/Icon.astro';
+import { sourceLabel } from '../../lib/content';
 import { blueprintNav } from '../../lib/nav';
 
 const entry = (await getEntry('factory', 'blueprint'))!;
 const { Content, headings } = await render(entry);
 const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
-const { title = 'agent 软件工厂蓝图', date, source, tags } = entry.data;
+const { title = 'Agent 软件工厂蓝图', date, source, tags } = entry.data;
 ---
 
 <Base title={title} layout="wide">
@@ -50,7 +51,10 @@ const { title = 'agent 软件工厂蓝图', date, source, tags } = entry.data;
           <p class="blueprint__source">
             <Icon name="link" size={14} />
             <span>
-              原始页面：<a href={source}>{source}</a>
+              原始页面：
+              <a href={source} title={source}>
+                {sourceLabel(source)}
+              </a>
             </span>
           </p>
         )
@@ -183,7 +187,7 @@ const { title = 'agent 软件工厂蓝图', date, source, tags } = entry.data;
       z-index: 5;
     }
 
-    .blueprint :global(.prose) :global(:is(h1, h2, h3, h4)) {
+    .blueprint :global(.prose) :global(:is(h1, h2, h3, h4, a)) {
       scroll-margin-top: 3.75rem;
     }
 
@@ -228,14 +232,15 @@ const { title = 'agent 软件工厂蓝图', date, source, tags } = entry.data;
   }
 
   function activate(id: string) {
-    for (const a of links.values()) a.classList.remove('is-active');
     const link = links.get(id);
     if (!link) return;
-    link.classList.add('is-active');
-    if (wide.matches && toc) {
-      const top = link.offsetTop - toc.clientHeight / 2;
-      toc.scrollTo({ top, behavior: 'auto' });
+    const top = wide.matches && toc ? link.offsetTop - toc.clientHeight / 2 : null;
+    for (const a of links.values()) {
+      a.classList.toggle('is-active', a === link);
+      if (a === link) a.setAttribute('aria-current', 'location');
+      else a.removeAttribute('aria-current');
     }
+    if (top !== null) toc!.scrollTo({ top, behavior: 'auto' });
   }
 
   const observer = new IntersectionObserver(

@@ -11,7 +11,7 @@ const categories = countBy(items.map((s) => s.category!));
 <Base title="Skill 库" layout="wide">
   <header class="page-header">
     <h1>Skill <span class="count">{items.length}</span></h1>
-    <p>可安装给 coding agent 的 skill，附用途、触发场景、安装命令和原文链接。</p>
+    <p>可安装给 coding agent 的 Skill，附用途、触发场景、安装命令和原文链接。</p>
   </header>
   <LibraryToolbar categories={categories} kinds={['Skill']} />
   <ul class="lib-grid" data-grid>

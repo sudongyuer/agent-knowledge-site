@@ -130,6 +130,10 @@ const label = tags.length ? tags.map((tag) => `#${tag}`).join(' ') : item.label;
     display: none;
   }
 
+  a:active .preview {
+    background-color: var(--canvas-hover);
+  }
+
   @media (hover: hover) and (pointer: fine) {
     a:hover .preview {
       background-color: var(--canvas-hover);

@@ -74,6 +74,21 @@ export function skillSummary(entry: CollectionEntry<'skills'>) {
   return firstParagraph(entry.body ?? '');
 }
 
+export function sourceLabel(url: string) {
+  try {
+    const { hostname, pathname } = new URL(url);
+    const host = hostname.replace(/^www\./, '');
+    const parts = pathname.split('/').filter(Boolean);
+    if (host === 'github.com' && parts.length >= 2) return `GitHub · ${parts[0]}/${parts[1]}`;
+    if ((host === 'x.com' || host === 'twitter.com') && parts[0]) return `X · @${parts[0]}`;
+    const path = parts.join('/');
+    if (!path) return host;
+    return `${host}/${path.length > 40 ? `${path.slice(0, 40)}…` : path}`;
+  } catch {
+    return url;
+  }
+}
+
 export function githubRepo(url?: string) {
   return url?.match(/github\.com\/([^/]+\/[^/#?]+)/)?.[1].toLowerCase();
 }

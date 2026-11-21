@@ -10,6 +10,7 @@ import Base from '../layouts/Base.astro';
   </header>
   <div class="search-panel">
     <div id="search"></div>
+    <p class="visually-hidden" id="search-status" aria-live="polite"></p>
     <noscript>搜索需要启用 JavaScript。</noscript>
     <p class="empty" id="search-unavailable" hidden>
       搜索暂时不可用，请稍后再试，或从顶部导航浏览简报、Prompt 和 Skill。
@@ -25,12 +26,12 @@ import Base from '../layouts/Base.astro';
         element: '#search',
         showSubResults: true,
         showImages: false,
-        autofocus: !query,
+        autofocus: !query && matchMedia('(pointer: fine)').matches,
         translations: {
-          placeholder: '输入关键词，例如 worktree、验证、hook',
-          zero_results: '没有找到与 [SEARCH_TERM] 相关的内容',
-          many_results: '找到 [COUNT] 条与 [SEARCH_TERM] 相关的结果',
-          one_result: '找到 1 条与 [SEARCH_TERM] 相关的结果',
+          placeholder: '输入关键词，例如 worktree、验证、hook…',
+          zero_results: '没有找到与「[SEARCH_TERM]」相关的内容，换个关键词试试',
+          many_results: '找到 [COUNT] 条与「[SEARCH_TERM]」相关的结果',
+          one_result: '找到 1 条与「[SEARCH_TERM]」相关的结果',
           load_more: '加载更多',
           clear_search: '清除',
           filters_label: '筛选',
@@ -38,6 +39,20 @@ import Base from '../layouts/Base.astro';
         },
       });
       if (query) ui.triggerSearch(query);
+
+      const root = document.getElementById('search');
+      const status = document.getElementById('search-status');
+      let lastMessage = '';
+      new MutationObserver(() => {
+        const message = root.querySelector('.pagefind-ui__message')?.textContent.trim() ?? '';
+        if (message && message !== lastMessage && !message.startsWith('正在搜索')) {
+          lastMessage = message;
+          status.textContent = message;
+        }
+        const term = root.querySelector('.pagefind-ui__search-input')?.value.trim() ?? '';
+        const next = term ? `?q=${encodeURIComponent(term)}` : '';
+        if (next !== location.search) history.replaceState(null, '', next || location.pathname);
+      }).observe(root, { childList: true, subtree: true, characterData: true });
     });
   </script>
 </Base>

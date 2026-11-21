@@ -1,7 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
-import { getSortedSkills, githubRepo, promptSummary } from '../../lib/content';
+import { getSortedSkills, githubRepo, promptSummary, sourceLabel } from '../../lib/content';
 
 export async function getStaticPaths() {
   const prompts = await getCollection('prompts');
@@ -48,7 +48,9 @@ const relatedSkills = (await getSortedSkills()).filter((s) => repos.has(githubRe
               原文
             </dt>
             <dd>
-              <a href={source_url}>{source_url}</a>
+              <a href={source_url} title={source_url}>
+                {sourceLabel(source_url)}
+              </a>
             </dd>
           </div>
         )
@@ -63,7 +65,9 @@ const relatedSkills = (await getSortedSkills()).filter((s) => repos.has(githubRe
               <ul>
                 {additional_sources.map((url) => (
                   <li>
-                    <a href={url}>{url}</a>
+                    <a href={url} title={url}>
+                      {sourceLabel(url)}
+                    </a>
                   </li>
                 ))}
               </ul>
