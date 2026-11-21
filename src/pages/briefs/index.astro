@@ -1,0 +1,23 @@
+---
+import Base from '../../layouts/Base.astro';
+import LibraryCard from '../../components/LibraryCard.astro';
+import SubNav from '../../components/SubNav.astro';
+import { getSortedBriefs } from '../../lib/content';
+import { briefItems } from '../../lib/library';
+import { briefsNav } from '../../lib/nav';
+
+const briefs = await getSortedBriefs();
+const items = await briefItems();
+const range = briefs.length ? `${briefs.at(-1)!.meta.date} 至 ${briefs[0].meta.date}` : '';
+---
+
+<Base title="Agent 工程实践简报" layout="wide">
+  <header class="page-header">
+    <h1>简报 <span class="count">{items.length}</span></h1>
+    <p>每日 agent 工程实践简报，按日期倒序{range && `，${range}`}。</p>
+  </header>
+  <SubNav items={briefsNav} />
+  <ul class="lib-grid">
+    {items.map((item) => <LibraryCard item={item} />)}
+  </ul>
+</Base>

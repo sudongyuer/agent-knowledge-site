@@ -1,0 +1,9 @@
+---
+import { getEntry } from 'astro:content';
+import MarkdownPage from '../../components/MarkdownPage.astro';
+import { blueprintNav } from '../../lib/nav';
+
+const entry = (await getEntry('factory', 'sources'))!;
+---
+
+<MarkdownPage entry={entry} title={entry.data.title ?? '工厂蓝图引用来源清单'} nav={blueprintNav} />

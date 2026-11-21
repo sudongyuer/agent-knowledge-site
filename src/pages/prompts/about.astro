@@ -1,0 +1,9 @@
+---
+import { getEntry } from 'astro:content';
+import MarkdownPage from '../../components/MarkdownPage.astro';
+import { promptsNav } from '../../lib/nav';
+
+const entry = (await getEntry('promptPages', 'library-readme'))!;
+---
+
+<MarkdownPage entry={entry} title="关于本库" nav={promptsNav} />

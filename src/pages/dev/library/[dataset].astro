@@ -1,0 +1,66 @@
+---
+import Base from '../../../layouts/Base.astro';
+import LibraryCard from '../../../components/LibraryCard.astro';
+import LibraryToolbar from '../../../components/LibraryToolbar.astro';
+import { countBy, promptItems, type LibraryItem } from '../../../lib/library';
+import { hugeItems, worstItems } from '../../../lib/library.fixtures';
+
+const datasets = ['demo', 'worst', 'empty', 'one', 'huge'] as const;
+
+export function getStaticPaths() {
+  if (!import.meta.env.DEV) return [];
+  return ['demo', 'worst', 'empty', 'one', 'huge'].map((dataset) => ({ params: { dataset } }));
+}
+
+const dataset = Astro.params.dataset as (typeof datasets)[number];
+const demo = await promptItems();
+const items: LibraryItem[] = {
+  demo,
+  worst: worstItems,
+  empty: [],
+  one: demo.slice(0, 1),
+  huge: hugeItems(demo),
+}[dataset];
+const categories = countBy(items.map((i) => i.category ?? ''));
+---
+
+<Base title="Break UI" layout="wide">
+  <header class="page-header">
+    <h1>Prompt <span class="count">{items.length}</span></h1>
+  </header>
+  <LibraryToolbar categories={categories} />
+  <ul class="lib-grid" data-grid>
+    {items.map((item) => <LibraryCard item={item} />)}
+  </ul>
+  <nav class="data-switch" aria-label="数据集">
+    {datasets.map((d) => <a href={`/dev/library/${d}/`} aria-current={d === dataset ? 'page' : undefined}>{d}</a>)}
+  </nav>
+</Base>
+
+<style>
+  .data-switch {
+    position: fixed;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    display: flex;
+    gap: 2px;
+    padding: 3px;
+    border-radius: 999px;
+    background: #e5e5e5;
+    font: 12px/1 -apple-system, sans-serif;
+  }
+
+  .data-switch a {
+    padding: 6px 12px;
+    border-radius: 999px;
+    color: #555;
+    text-decoration: none;
+  }
+
+  .data-switch a[aria-current='page'] {
+    background: #fff;
+    color: #000;
+  }
+</style>

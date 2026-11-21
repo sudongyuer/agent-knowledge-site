@@ -1,0 +1,20 @@
+---
+import Base from '../../../layouts/Base.astro';
+import LibraryCard from '../../../components/LibraryCard.astro';
+import SubNav from '../../../components/SubNav.astro';
+import { noteItems } from '../../../lib/library';
+import { blueprintNav } from '../../../lib/nav';
+
+const items = await noteItems();
+---
+
+<Base title="研究笔记" layout="wide">
+  <header class="page-header">
+    <h1>研究笔记 <span class="count">{items.length}</span></h1>
+    <p>工厂蓝图各版本的研究笔记。</p>
+  </header>
+  <SubNav items={blueprintNav} />
+  <ul class="lib-grid">
+    {items.map((item) => <LibraryCard item={item} />)}
+  </ul>
+</Base>

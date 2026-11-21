@@ -1,0 +1,9 @@
+---
+import { getEntry } from 'astro:content';
+import MarkdownPage from '../../components/MarkdownPage.astro';
+import { briefsNav } from '../../lib/nav';
+
+const entry = (await getEntry('agentPages', 'concepts'))!;
+---
+
+<MarkdownPage entry={entry} title="概念库" nav={briefsNav} />

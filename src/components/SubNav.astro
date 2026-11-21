@@ -1,0 +1,23 @@
+---
+import Icon, { type IconName } from './Icon.astro';
+
+interface Props {
+  items: { href: string; label: string; icon: IconName }[];
+}
+
+const { items } = Astro.props;
+const path = Astro.url.pathname;
+---
+
+<ul class="segmented">
+  {
+    items.map((item) => (
+      <li>
+        <a href={item.href} aria-current={path === item.href ? 'page' : undefined}>
+          <Icon name={item.icon} size={15} />
+          {item.label}
+        </a>
+      </li>
+    ))
+  }
+</ul>

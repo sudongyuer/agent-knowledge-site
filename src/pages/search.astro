@@ -1,0 +1,121 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="搜索">
+  <link slot="head" href="/pagefind/pagefind-ui.css" rel="stylesheet" />
+  <header class="page-header">
+    <h1>搜索</h1>
+    <p>搜索简报、Prompt、蓝图和笔记的全文。</p>
+  </header>
+  <div class="search-panel">
+    <div id="search"></div>
+    <noscript>搜索需要启用 JavaScript。</noscript>
+    <p class="empty" id="search-unavailable" hidden>
+      搜索索引尚未生成。请先运行 <code>pnpm build</code>，再用 <code>pnpm preview</code> 打开本页。
+    </p>
+  </div>
+  <script is:inline src="/pagefind/pagefind-ui.js" onerror="document.getElementById('search-unavailable').hidden = false"
+  ></script>
+  <script is:inline>
+    window.addEventListener('DOMContentLoaded', () => {
+      if (!window.PagefindUI) return;
+      const query = new URLSearchParams(location.search).get('q');
+      const ui = new PagefindUI({
+        element: '#search',
+        showSubResults: true,
+        showImages: false,
+        autofocus: !query,
+        translations: {
+          placeholder: '输入关键词，例如 worktree、验证、hook',
+          zero_results: '没有找到与 [SEARCH_TERM] 相关的内容',
+          many_results: '找到 [COUNT] 条与 [SEARCH_TERM] 相关的结果',
+          one_result: '找到 1 条与 [SEARCH_TERM] 相关的结果',
+          load_more: '加载更多',
+          clear_search: '清除',
+          filters_label: '筛选',
+          searching: '正在搜索 [SEARCH_TERM]…',
+        },
+      });
+      if (query) ui.triggerSearch(query);
+    });
+  </script>
+</Base>
+
+<style is:global>
+  #search {
+    --pagefind-ui-scale: 0.9;
+    --pagefind-ui-primary: var(--text);
+    --pagefind-ui-text: var(--text);
+    --pagefind-ui-background: var(--pill);
+    --pagefind-ui-border: transparent;
+    --pagefind-ui-tag: var(--pill);
+    --pagefind-ui-border-width: 0px;
+    --pagefind-ui-border-radius: 999px;
+    --pagefind-ui-font: var(--font-sans);
+  }
+
+  #search .pagefind-ui__search-input {
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  #search .pagefind-ui__search-input:focus {
+    outline: none;
+    background: var(--pill-hover);
+  }
+
+  #search .pagefind-ui__search-clear {
+    background: transparent;
+  }
+
+  #search .pagefind-ui__message {
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  #search .pagefind-ui__result {
+    padding: 1.25rem 0;
+    border-top: 1px solid var(--border);
+  }
+
+  #search .pagefind-ui__result-link {
+    color: var(--text);
+    font-weight: 650;
+    text-decoration: none;
+  }
+
+  #search .pagefind-ui__result-nested .pagefind-ui__result-link {
+    color: var(--text-2);
+    font-weight: 500;
+  }
+
+  #search .pagefind-ui__result-excerpt {
+    color: var(--text-muted);
+  }
+
+  #search mark {
+    padding: 0 0.15em;
+    border-radius: 4px;
+    background: var(--pill-hover);
+    color: var(--text);
+    font-weight: 650;
+  }
+
+  #search .pagefind-ui__button {
+    border: 0;
+    border-radius: 999px;
+    background: var(--pill);
+    color: var(--text);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    #search .pagefind-ui__result-link:hover {
+      text-decoration: underline;
+    }
+
+    #search .pagefind-ui__button:hover {
+      background: var(--pill-hover);
+    }
+  }
+</style>

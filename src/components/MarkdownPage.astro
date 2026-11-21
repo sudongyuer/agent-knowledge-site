@@ -1,0 +1,28 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import SubNav from './SubNav.astro';
+import { hasLeadingH1 } from '../lib/content';
+import type { IconName } from './Icon.astro';
+
+type Entry = CollectionEntry<'agentPages' | 'promptPages' | 'factory'>;
+
+interface Props {
+  entry: Entry;
+  title: string;
+  nav: { href: string; label: string; icon: IconName }[];
+  layout?: 'wide' | 'reading';
+}
+
+const { entry, title, nav, layout = 'reading' } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<Base title={title} layout={layout}>
+  <SubNav items={nav} />
+  <article class="prose" data-pagefind-body>
+    {!hasLeadingH1(entry.body) && <h1>{title}</h1>}
+    <Content />
+    <slot />
+  </article>
+</Base>

@@ -1,0 +1,9 @@
+---
+import { getEntry } from 'astro:content';
+import MarkdownPage from '../../components/MarkdownPage.astro';
+import { briefsNav } from '../../lib/nav';
+
+const entry = (await getEntry('agentPages', 'watchlist'))!;
+---
+
+<MarkdownPage entry={entry} title="关注名单" nav={briefsNav} />

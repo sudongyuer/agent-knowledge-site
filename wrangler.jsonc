@@ -1,0 +1,9 @@
+{
+  "name": "agent-knowledge-site",
+  "compatibility_date": "2026-11-21",
+  "assets": {
+    "directory": "./dist/",
+    "not_found_handling": "404-page"
+  },
+  "routes": [{ "pattern": "kb.taprio.app", "custom_domain": true }]
+}

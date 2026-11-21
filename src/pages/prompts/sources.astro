@@ -1,0 +1,42 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import MarkdownPage from '../../components/MarkdownPage.astro';
+import { promptsNav } from '../../lib/nav';
+
+const entry = (await getEntry('promptPages', 'sources'))!;
+const records = await getCollection('promptSources');
+---
+
+<MarkdownPage entry={entry} title="Prompt 来源清单" nav={promptsNav}>
+  <h2 id="sources-jsonl">机器可读清单（sources.jsonl，{records.length} 条）</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>名称</th>
+        <th>类型</th>
+        <th>领域</th>
+        <th>优先级</th>
+        <th>巡查频率</th>
+        <th>为什么收</th>
+        <th>核实日期</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        records.map(({ data }) => (
+          <tr>
+            <td>
+              <a href={data.url}>{data.name}</a>
+            </td>
+            <td>{data.type}</td>
+            <td>{data.domains?.join('、')}</td>
+            <td>{data.priority}</td>
+            <td>{data.cadence}</td>
+            <td>{data.why}</td>
+            <td>{data.last_verified}</td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</MarkdownPage>

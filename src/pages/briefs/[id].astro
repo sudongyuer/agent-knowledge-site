@@ -1,0 +1,115 @@
+---
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import { getSortedBriefs } from '../../lib/content';
+
+export async function getStaticPaths() {
+  const briefs = await getSortedBriefs();
+  return briefs.map(({ entry, meta }, index) => ({
+    params: { id: entry.id },
+    props: { entry, meta, newer: briefs[index - 1]?.meta, older: briefs[index + 1]?.meta },
+  }));
+}
+
+const { entry, meta, newer, older } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<Base title={meta.title} description={meta.summary}>
+  <nav class="breadcrumb" aria-label="面包屑">
+    <a href="/briefs/">简报</a>
+    <time datetime={meta.date}>{meta.date}</time>
+  </nav>
+  <article class="prose" data-pagefind-body>
+    {!meta.hasOwnTitle && <h1>{meta.title}</h1>}
+    <Content />
+  </article>
+  <nav class="pager" aria-label="前后两期">
+    {
+      older ? (
+        <a class="pager__item" href={`/briefs/${older.id}/`}>
+          <span class="pager__label">
+            <Icon name="arrowLeft" size={14} />
+            更早一期 · {older.date}
+          </span>
+          <span class="pager__title">{older.title}</span>
+        </a>
+      ) : (
+        <span />
+      )
+    }
+    {
+      newer && (
+        <a class="pager__item pager__item--next" href={`/briefs/${newer.id}/`}>
+          <span class="pager__label">
+            更新一期 · {newer.date}
+            <Icon name="arrowRight" size={14} />
+          </span>
+          <span class="pager__title">{newer.title}</span>
+        </a>
+      )
+    }
+  </nav>
+</Base>
+
+<style>
+  .pager {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 4rem;
+  }
+
+  .pager__item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding: 1.1rem 1.25rem;
+    border-radius: var(--radius-card);
+    background: var(--canvas);
+    color: inherit;
+    text-decoration: none;
+    transition: background-color var(--dur-fast) ease;
+  }
+
+  .pager__label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+  }
+
+  .pager__title {
+    font-weight: 600;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .pager__item--next {
+    grid-column: 2;
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .pager__item:hover {
+      background: var(--canvas-hover);
+    }
+  }
+
+  @media (max-width: 560px) {
+    .pager {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .pager > span:empty {
+      display: none;
+    }
+
+    .pager__item--next {
+      grid-column: auto;
+    }
+  }
+</style>

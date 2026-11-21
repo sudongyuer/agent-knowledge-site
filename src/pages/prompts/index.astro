@@ -1,0 +1,25 @@
+---
+import Base from '../../layouts/Base.astro';
+import LibraryCard from '../../components/LibraryCard.astro';
+import LibraryToolbar from '../../components/LibraryToolbar.astro';
+import SubNav from '../../components/SubNav.astro';
+import { getSortedPrompts } from '../../lib/content';
+import { countBy, promptItems } from '../../lib/library';
+import { promptsNav } from '../../lib/nav';
+
+const prompts = await getSortedPrompts();
+const items = await promptItems();
+const categories = countBy(prompts.map((p) => p.data.category));
+---
+
+<Base title="Prompt 库" layout="wide">
+  <header class="page-header">
+    <h1>Prompt <span class="count">{items.length}</span></h1>
+    <p>可直接复制给 coding agent 的 prompt，附场景、已知坑、来源和作者。</p>
+  </header>
+  <SubNav items={promptsNav} />
+  <LibraryToolbar categories={categories} />
+  <ul class="lib-grid" data-grid>
+    {items.map((item) => <LibraryCard item={item} />)}
+  </ul>
+</Base>

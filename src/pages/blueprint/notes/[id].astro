@@ -1,0 +1,14 @@
+---
+import { getCollection } from 'astro:content';
+import MarkdownPage from '../../../components/MarkdownPage.astro';
+import { blueprintNav } from '../../../lib/nav';
+
+export async function getStaticPaths() {
+  const notes = await getCollection('factory', (e) => e.id.startsWith('notes/'));
+  return notes.map((entry) => ({ params: { id: entry.id.slice('notes/'.length) }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+---
+
+<MarkdownPage entry={entry} title={entry.data.title ?? entry.id} nav={blueprintNav} />
