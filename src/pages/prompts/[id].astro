@@ -1,7 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
-import { promptSummary } from '../../lib/content';
+import { getSortedSkills, githubRepo, promptSummary } from '../../lib/content';
 
 export async function getStaticPaths() {
   const prompts = await getCollection('prompts');
@@ -11,6 +11,8 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { title, category, tags, author, source_url, additional_sources, variants, date, status } = entry.data;
 const { Content } = await render(entry);
+const repos = new Set([source_url, ...(additional_sources ?? [])].map(githubRepo).filter(Boolean));
+const relatedSkills = (await getSortedSkills()).filter((s) => repos.has(githubRepo(s.data.source_url)));
 ---
 
 <Base title={title} description={promptSummary(entry)}>
@@ -19,13 +21,13 @@ const { Content } = await render(entry);
     <a href={`/prompts/?category=${encodeURIComponent(category)}`}>{category}</a>
   </nav>
   <article data-pagefind-body>
-    <header class="prompt-head">
+    <header>
       <div class="meta-row">
         <span class="badge" data-pagefind-filter="category">{category}</span>
         <time datetime={date}>收录于 {date}</time>
         {status && <span class="chip">{status}</span>}
       </div>
-      <h1>{title}</h1>
+      <h1 class="detail-title">{title}</h1>
     </header>
 
     <dl class="facts">
@@ -86,6 +88,22 @@ const { Content } = await render(entry);
         )
       }
       {
+        relatedSkills.length > 0 && (
+          <div class="facts__row">
+            <dt>同源 Skill</dt>
+            <dd>
+              <ul>
+                {relatedSkills.map((s) => (
+                  <li>
+                    <a href={`/skills/${s.id}/`}>{s.data.title}</a>
+                  </li>
+                ))}
+              </ul>
+            </dd>
+          </div>
+        )
+      }
+      {
         variants && variants.length > 0 && (
           <div class="facts__row">
             <dt>
@@ -108,80 +126,3 @@ const { Content } = await render(entry);
     </div>
   </article>
 </Base>
-
-<style>
-  .prompt-head h1 {
-    margin: 1rem 0 2rem;
-    font-size: clamp(2rem, 1.55rem + 1.8vw, 2.75rem);
-    font-weight: 700;
-    line-height: 1.15;
-    letter-spacing: -0.035em;
-    text-wrap: balance;
-  }
-
-  .facts {
-    display: grid;
-    margin: 0 0 3rem;
-    padding: 0.25rem 1.25rem;
-    border-radius: var(--radius-card);
-    background: var(--canvas);
-    font-size: 0.88rem;
-    line-height: 1.7;
-  }
-
-  .facts__row {
-    display: grid;
-    grid-template-columns: 5.5rem minmax(0, 1fr);
-    gap: 1rem;
-    padding: 0.75rem 0;
-  }
-
-  .facts__row + .facts__row {
-    border-top: 1px solid var(--border);
-  }
-
-  .facts dt {
-    color: var(--text-muted);
-  }
-
-  .facts dd {
-    margin: 0;
-    min-width: 0;
-    color: var(--text-2);
-    word-break: break-word;
-  }
-
-  .facts dd a {
-    color: var(--text-2);
-    text-decoration-color: var(--border-strong);
-  }
-
-  .facts ul {
-    margin: 0;
-    padding-left: 1.1rem;
-  }
-
-  .facts__tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.35rem;
-    align-items: center;
-  }
-
-  .facts__tags .chip {
-    background: var(--bg);
-  }
-
-  @media (hover: hover) and (pointer: fine) {
-    .facts dd a:hover {
-      color: var(--text);
-    }
-  }
-
-  @media (max-width: 520px) {
-    .facts__row {
-      grid-template-columns: minmax(0, 1fr);
-      gap: 0.1rem;
-    }
-  }
-</style>

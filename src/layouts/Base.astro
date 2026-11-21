@@ -17,6 +17,7 @@ const path = Astro.url.pathname;
 const nav = [
   { href: '/briefs/', label: '简报' },
   { href: '/prompts/', label: 'Prompt' },
+  { href: '/skills/', label: 'Skill' },
   { href: '/blueprint/', label: '蓝图' },
 ];
 ---
@@ -65,7 +66,7 @@ const nav = [
         <form class="site-search" action="/search/" method="get" role="search">
           <Icon name="search" size={16} />
           <label class="visually-hidden" for="site-q">搜索全站</label>
-          <input id="site-q" name="q" type="search" placeholder="搜索简报、Prompt、蓝图…" autocomplete="off" />
+          <input id="site-q" name="q" type="search" placeholder="搜索简报、Prompt、Skill…" autocomplete="off" />
         </form>
         <button class="theme-toggle" type="button" aria-label="切换深浅色" title="切换深浅色">
           <Icon name="sun" size={18} class="theme-toggle__sun" />
@@ -79,10 +80,11 @@ const nav = [
     <footer class="site-footer">
       <div class="site-footer__inner">
         <span class="site-footer__brand"><span class="site-brand__mark" aria-hidden="true">A</span>{siteName}</span>
-        <span>内容来自三个 bot 收集的 Markdown 资料，本站只做渲染，不改动原文。</span>
+        <span>内容来自 bot 收集的 Markdown 资料，本站只做渲染，不改动原文。</span>
         <nav aria-label="页脚导航">
           <a href="/briefs/">简报</a>
           <a href="/prompts/">Prompt</a>
+          <a href="/skills/">Skill</a>
           <a href="/blueprint/">蓝图</a>
           <a href="/search/">搜索</a>
         </nav>

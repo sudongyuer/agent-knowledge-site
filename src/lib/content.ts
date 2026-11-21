@@ -58,11 +58,24 @@ export async function getSortedBriefs() {
     .sort((a, b) => b.meta.date.localeCompare(a.meta.date) || b.meta.id.localeCompare(a.meta.id));
 }
 
+function newestFirst(a: { data: { date: string; title: string } }, b: { data: { date: string; title: string } }) {
+  return b.data.date.localeCompare(a.data.date) || a.data.title.localeCompare(b.data.title, 'zh-Hans-CN');
+}
+
 export async function getSortedPrompts() {
-  const entries = await getCollection('prompts');
-  return entries.sort(
-    (a, b) => b.data.date.localeCompare(a.data.date) || a.data.title.localeCompare(b.data.title, 'zh-Hans-CN'),
-  );
+  return (await getCollection('prompts')).sort(newestFirst);
+}
+
+export async function getSortedSkills() {
+  return (await getCollection('skills')).sort(newestFirst);
+}
+
+export function skillSummary(entry: CollectionEntry<'skills'>) {
+  return firstParagraph(entry.body ?? '');
+}
+
+export function githubRepo(url?: string) {
+  return url?.match(/github\.com\/([^/]+\/[^/#?]+)/)?.[1].toLowerCase();
 }
 
 export function promptSummary(entry: CollectionEntry<'prompts'>) {

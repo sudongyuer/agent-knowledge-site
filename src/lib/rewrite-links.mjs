@@ -11,6 +11,7 @@ const routes = [
   [/^prompt-collector\/sources\.md$/, () => '/prompts/sources/'],
   [/^prompt-collector\/sources\.jsonl$/, () => '/prompts/sources/#sources-jsonl'],
   [/^prompt-collector\/library-README\.md$/, () => '/prompts/about/'],
+  [/^skill-collector\/skills\/(.+)\.md$/, (m) => `/skills/${m[1]}/`],
   [/^factory-architect\/blueprint\.md$/, () => '/blueprint/'],
   [/^factory-architect\/notes\/(.+)\.md$/, (m) => `/blueprint/notes/${m[1]}/`],
   [/^factory-architect\/sources\.md$/, () => '/blueprint/sources/'],

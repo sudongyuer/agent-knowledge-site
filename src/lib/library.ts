@@ -1,9 +1,9 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
-import { getSortedBriefs, getSortedPrompts, promptSummary } from './content';
+import { getSortedBriefs, getSortedPrompts, getSortedSkills, promptSummary } from './content';
 
 export interface LibraryItem {
   href: string;
-  kind: '简报' | 'Prompt' | '笔记';
+  kind: '简报' | 'Prompt' | 'Skill' | '笔记';
   title: string;
   label: string;
   meta: string;
@@ -58,6 +58,19 @@ export async function promptItems(): Promise<LibraryItem[]> {
     category: p.data.category,
     tags: p.data.tags,
     hasVariants: (p.data.variants?.length ?? 0) > 0,
+  }));
+}
+
+export async function skillItems(): Promise<LibraryItem[]> {
+  return (await getSortedSkills()).map((s) => ({
+    href: `/skills/${s.id}/`,
+    kind: 'Skill',
+    title: s.data.title,
+    label: s.data.category,
+    meta: firstAuthor(s.data.author),
+    excerpt: plain(`${s.data.name}\n${s.body ?? ''}`),
+    category: s.data.category,
+    tags: s.data.tags,
   }));
 }
 

@@ -4,12 +4,14 @@ import Base from '../layouts/Base.astro';
 import LibraryCard from '../components/LibraryCard.astro';
 import LibraryToolbar from '../components/LibraryToolbar.astro';
 import { getSortedBriefs, getSortedPrompts } from '../lib/content';
-import { briefItems, countBy, promptItems } from '../lib/library';
+import { briefItems, countBy, promptItems, skillItems } from '../lib/library';
 
 const briefs = await getSortedBriefs();
 const prompts = await getSortedPrompts();
 const prompt = await promptItems();
 const brief = await briefItems();
+const skill = await skillItems();
+const skillCategories = countBy(skill.map((s) => s.category!));
 const categories = countBy(prompts.map((p) => p.data.category));
 const tags = countBy(prompts.flatMap((p) => p.data.tags));
 const { headings } = await render((await getEntry('factory', 'blueprint'))!);
@@ -27,6 +29,11 @@ const index = [
     heading: '标签',
     all: '/prompts/',
     links: tags.slice(0, 5).map(([name]) => ({ label: name, href: `/prompts/?tag=${encodeURIComponent(name)}` })),
+  },
+  {
+    heading: 'Skill 分类',
+    all: '/skills/',
+    links: skillCategories.slice(0, 5).map(([name]) => ({ label: name, href: `/skills/?category=${encodeURIComponent(name)}` })),
   },
   {
     heading: '今日概念',
@@ -48,7 +55,7 @@ const index = [
   <section class="hero">
     <h1>Agent 知识站</h1>
     <p>
-      三个 bot 收集的 agent 工程资料：每日简报、Prompt 库、软件工厂蓝图。<br />{briefs.length} 期简报，{prompts.length} 条 Prompt，持续更新。
+      bot 收集的 agent 工程资料：每日简报、Prompt 库、Skill 库、软件工厂蓝图。<br />{briefs.length} 期简报，{prompts.length} 条 Prompt，{skill.length} 个 Skill，持续更新。
     </p>
     <div class="hero__actions">
       <a class="pill-btn pill-btn--dark" href="/prompts/">浏览 Prompt</a>
@@ -76,11 +83,12 @@ const index = [
     }
   </nav>
 
-  <LibraryToolbar categories={categories} withKindSwitch />
+  <LibraryToolbar categories={categories} kinds={['Prompt', '简报', 'Skill']} />
 
   <ul class="lib-grid" data-grid>
     {prompt.map((item) => <LibraryCard item={item} />)}
     {brief.map((item) => <LibraryCard item={item} hidden />)}
+    {skill.map((item) => <LibraryCard item={item} hidden />)}
   </ul>
 </Base>
 
@@ -115,7 +123,7 @@ const index = [
 
   .index {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 2rem;
     padding: 2rem 0 2.5rem;
   }

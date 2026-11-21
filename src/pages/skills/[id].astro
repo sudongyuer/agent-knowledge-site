@@ -1,0 +1,107 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { getSortedPrompts, githubRepo, skillSummary } from '../../lib/content';
+
+export async function getStaticPaths() {
+  const skills = await getCollection('skills');
+  return skills.map((entry) => ({ params: { id: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { name, title, author, source_url, install, category, tags, date, license } = entry.data;
+const { Content } = await render(entry);
+const repo = githubRepo(source_url);
+const relatedPrompts = repo
+  ? (await getSortedPrompts()).filter((p) =>
+      [p.data.source_url, ...(p.data.additional_sources ?? [])].some((url) => githubRepo(url) === repo),
+    )
+  : [];
+---
+
+<Base title={title} description={skillSummary(entry)}>
+  <nav class="breadcrumb" aria-label="面包屑">
+    <a href="/skills/">Skill 库</a>
+    <a href={`/skills/?category=${encodeURIComponent(category)}`}>{category}</a>
+  </nav>
+  <article data-pagefind-body>
+    <header>
+      <div class="meta-row">
+        <span class="badge" data-pagefind-filter="category">{category}</span>
+        <time datetime={date}>收录于 {date}</time>
+      </div>
+      <h1 class="detail-title">{title}</h1>
+    </header>
+
+    <dl class="facts">
+      <div class="facts__row">
+        <dt>名称</dt>
+        <dd><code>{name}</code></dd>
+      </div>
+      {
+        author && (
+          <div class="facts__row">
+            <dt>作者</dt>
+            <dd>{author}</dd>
+          </div>
+        )
+      }
+      <div class="facts__row">
+        <dt>原文</dt>
+        <dd>
+          <a href={source_url}>{source_url}</a>
+        </dd>
+      </div>
+      {
+        license && (
+          <div class="facts__row">
+            <dt>授权</dt>
+            <dd>{license}</dd>
+          </div>
+        )
+      }
+      {
+        tags.length > 0 && (
+          <div class="facts__row">
+            <dt>标签</dt>
+            <dd class="facts__tags">
+              {tags.map((tag) => (
+                <a class="chip" href={`/skills/?tag=${encodeURIComponent(tag)}`}>
+                  #{tag}
+                </a>
+              ))}
+            </dd>
+          </div>
+        )
+      }
+      {
+        relatedPrompts.length > 0 && (
+          <div class="facts__row">
+            <dt>同源 Prompt</dt>
+            <dd>
+              <ul>
+                {relatedPrompts.map((p) => (
+                  <li>
+                    <a href={`/prompts/${p.id}/`}>{p.data.title}</a>
+                  </li>
+                ))}
+              </ul>
+            </dd>
+          </div>
+        )
+      }
+    </dl>
+
+    <div class="prose">
+      <Content />
+      {
+        install && (
+          <>
+            <h2>安装</h2>
+            <pre data-language="sh"><code>{install}</code></pre>
+          </>
+        )
+      }
+    </div>
+  </article>
+</Base>

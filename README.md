@@ -1,6 +1,6 @@
 # Agent 知识站
 
-把 `content-source/` 下三个 bot 收集的 Markdown 资料渲染成一个中文静态网站：Agent 工程实践简报、Prompt 库、Agent 软件工厂蓝图，外加全站搜索。
+把 `content-source/` 下四个 bot 收集的 Markdown 资料渲染成一个中文静态网站：Agent 工程实践简报、Prompt 库、Skill 库、Agent 软件工厂蓝图，外加全站搜索。
 
 - 静态站点生成：Astro 7（`output: 'static'`）+ content collections
 - Markdown：Astro 默认的 Sätteri 处理器，开启 `attributes` 特性来解析标题上的 `{#id}`
@@ -34,7 +34,7 @@ Astro 7 的 `astro preview` 启动后会转为后台守护进程，停止用 `pn
 
 ## 更新内容
 
-内容全部来自 `content-source/`，站点代码不复制也不修改其中的文件。三个 bot 直接把文件提交到本仓库 main 分支的各自目录，步骤和令牌权限见 [docs/bot-upload.md](docs/bot-upload.md)。提交后线上自动更新（见下一节）。
+内容全部来自 `content-source/`，站点代码不复制也不修改其中的文件。四个 bot 直接把文件提交到本仓库 main 分支的各自目录，步骤和令牌权限见 [docs/bot-upload.md](docs/bot-upload.md)。提交后线上自动更新（见下一节）。
 
 本地手动更新：替换 `content-source/` 里的文件（保持下面的目录结构），再运行 `pnpm build`（预览中的话，再执行一次 `pnpm preview`）。
 
@@ -48,6 +48,7 @@ Astro 7 的 `astro preview` 启动后会转为后台守护进程，停止用 `pn
 | `prompt-collector/prompts/*.md` | `/prompts/<文件名>/`，列表在 `/prompts/`（可按分类和标签筛选） |
 | `prompt-collector/sources.md` + `sources.jsonl` | `/prompts/sources/` |
 | `prompt-collector/library-README.md` | `/prompts/about/` |
+| `skill-collector/skills/*.md` | `/skills/<文件名>/`，列表在 `/skills/`（可按分类和标签筛选；格式见 docs/bot-upload.md） |
 | `factory-architect/blueprint.md` | `/blueprint/`（带侧边目录） |
 | `factory-architect/notes/*.md` | `/blueprint/notes/<文件名>/` |
 | `factory-architect/sources.md` | `/blueprint/sources/` |

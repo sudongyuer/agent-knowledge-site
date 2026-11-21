@@ -29,6 +29,21 @@ const prompts = defineCollection({
   }),
 });
 
+const skills = defineCollection({
+  loader: glob({ pattern: '*.md', base: './content-source/skill-collector/skills' }),
+  schema: z.looseObject({
+    name: z.string(),
+    title: z.string(),
+    author: z.string().optional(),
+    source_url: z.string(),
+    install: z.string().optional(),
+    category: z.string(),
+    tags: z.array(z.string()).default([]),
+    date: dateString,
+    license: z.string().optional(),
+  }),
+});
+
 const promptPages = defineCollection({
   loader: glob({ pattern: ['sources.md', 'library-README.md'], base: './content-source/prompt-collector' }),
 });
@@ -64,4 +79,4 @@ const factory = defineCollection({
   }),
 });
 
-export const collections = { briefs, agentPages, prompts, promptPages, promptSources, factory };
+export const collections = { briefs, agentPages, prompts, skills, promptPages, promptSources, factory };

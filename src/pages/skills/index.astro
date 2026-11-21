@@ -1,0 +1,20 @@
+---
+import Base from '../../layouts/Base.astro';
+import LibraryCard from '../../components/LibraryCard.astro';
+import LibraryToolbar from '../../components/LibraryToolbar.astro';
+import { countBy, skillItems } from '../../lib/library';
+
+const items = await skillItems();
+const categories = countBy(items.map((s) => s.category!));
+---
+
+<Base title="Skill 库" layout="wide">
+  <header class="page-header">
+    <h1>Skill <span class="count">{items.length}</span></h1>
+    <p>可安装给 coding agent 的 skill，附用途、触发场景、安装命令和原文链接。</p>
+  </header>
+  <LibraryToolbar categories={categories} kinds={['Skill']} />
+  <ul class="lib-grid" data-grid>
+    {items.map((item) => <LibraryCard item={item} />)}
+  </ul>
+</Base>
