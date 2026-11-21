@@ -5,5 +5,5 @@
     "directory": "./dist/",
     "not_found_handling": "404-page"
   },
-  "routes": [{ "pattern": "kb.taprio.app", "custom_domain": true }]
+  "routes": [{ "pattern": "kb.tapiro.app", "zone_name": "tapiro.app", "custom_domain": true }]
 }

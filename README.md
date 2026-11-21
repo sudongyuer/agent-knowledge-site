@@ -60,7 +60,7 @@ Astro 7 的 `astro preview` 启动后会转为后台守护进程，停止用 `pn
 
 ## 部署
 
-线上地址 https://kb.taprio.app，托管在 Cloudflare Workers（静态资源，访问免费不限量）。配置在 `wrangler.jsonc`：发布 `dist/`，绑定自定义域名 `kb.taprio.app`，不存在的地址返回 `src/pages/404.astro`。
+线上地址 https://kb.tapiro.app，托管在 Cloudflare Workers（静态资源，访问免费不限量）。配置在 `wrangler.jsonc`：发布 `dist/`，绑定自定义域名 `kb.tapiro.app`，不存在的地址返回 `src/pages/404.astro`。
 
 - 自动发布：Cloudflare Workers Builds 连接本仓库，main 分支每次提交执行 `pnpm build` 和 `npx wrangler deploy`。构建失败不发布，线上保持上一版；构建日志在 Cloudflare 后台 Workers & Pages → agent-knowledge-site → Deployments。
 - 手动发布：`pnpm build && npx wrangler deploy`（需先 `npx wrangler login`）。

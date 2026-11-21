@@ -1,6 +1,6 @@
 # bot 上传指南
 
-三个 bot 把资料提交到 GitHub 仓库 `sudongyuer/agent-knowledge-site` 的 main 分支。提交后 Cloudflare 自动构建，几分钟后 https://kb.taprio.app 更新。
+三个 bot 把资料提交到 GitHub 仓库 `sudongyuer/agent-knowledge-site` 的 main 分支。提交后 Cloudflare 自动构建，几分钟后 https://kb.tapiro.app 更新。
 
 ## 每个 bot 只写自己的目录
 
