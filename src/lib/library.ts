@@ -22,7 +22,8 @@ function plain(text: string) {
     .replace(/^---[\s\S]*?\n---\s*\n/, '')
     .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
     .replace(/\{#[^}]*\}/g, '')
-    .replace(/[*`>#|]/g, '');
+    .replace(/[*`>#|]/g, '')
+    .replace(/^[\s:-]*-{3,}[\s:-]*$/gm, '');
   return collapseBlankLines(stripped).slice(0, 360);
 }
 
