@@ -9,7 +9,7 @@ const records = await getCollection('promptSources');
 
 <MarkdownPage entry={entry} title="Prompt 来源清单" nav={promptsNav}>
   <h2 id="sources-jsonl">机器可读清单（sources.jsonl，{records.length} 条）</h2>
-  <table>
+  <table tabindex="0" aria-label="sources.jsonl 来源清单">
     <thead>
       <tr>
         <th>名称</th>

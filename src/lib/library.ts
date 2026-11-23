@@ -17,6 +17,8 @@ export function collapseBlankLines(text: string) {
   return text.replace(/\n\s*\n/g, '\n').trim();
 }
 
+const graphemes = new Intl.Segmenter('zh');
+
 function plain(text: string) {
   const stripped = text
     .replace(/^---[\s\S]*?\n---\s*\n/, '')
@@ -24,7 +26,11 @@ function plain(text: string) {
     .replace(/\{#[^}]*\}/g, '')
     .replace(/[*`>#|]/g, '')
     .replace(/^[\s:-]*-{3,}[\s:-]*$/gm, '');
-  return collapseBlankLines(stripped).slice(0, 360);
+  return graphemes
+    .segment(collapseBlankLines(stripped))
+    [Symbol.iterator]()
+    .take(360)
+    .reduce((text, { segment }) => text + segment, '');
 }
 
 function promptExcerpt(entry: CollectionEntry<'prompts'>) {

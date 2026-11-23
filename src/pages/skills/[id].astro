@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import CodeBlock from '../../components/CodeBlock.astro';
 import { getSortedPrompts, githubRepo, skillSummary, sourceLabel } from '../../lib/content';
 
 export async function getStaticPaths() {
@@ -100,7 +101,7 @@ const relatedPrompts = repo
         install && (
           <>
             <h2>安装</h2>
-            <pre data-language="sh"><code>{install}</code></pre>
+            <CodeBlock code={install} language="sh" />
           </>
         )
       }
