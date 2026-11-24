@@ -1,6 +1,6 @@
 ---
 title: "工厂蓝图引用来源清单"
-date: 2026-11-17
+date: 2026-11-23
 tags:
   - sources
   - software-factory
@@ -9,7 +9,7 @@ tags:
 
 # 工厂蓝图引用来源清单
 
-汇总自蓝图第 6 部分「来源清单」（含 v2 新增来源）和研究笔记 v1-notes.md、v2-notes.md，按链接去重。笔记里出现的其他链接都已在蓝图清单中；只有 StrongDM Weather Report 仅在 v1-notes.md 提到。日期为空的写「未标日期」。
+汇总自蓝图第 6 部分「来源清单」（含 v2、v3 新增来源）和研究笔记 v1-notes.md、v2-notes.md、v3-notes.md，按链接去重。笔记里出现的其他链接都已在蓝图清单中；只有 StrongDM Weather Report 仅在 v1-notes.md 提到。日期为空的写「未标日期」。
 
 | # | 标题 | 作者 / 站点 | 日期 | 链接 | 出现于 |
 | --- | --- | --- | --- | --- | --- |
@@ -92,3 +92,16 @@ tags:
 | 77 | Test pull requests with an AI agent（Agentic CI） | Expo 文档 | 未标日期 | <https://docs.expo.dev/agentic-workflows/agentic-ci/> | 蓝图 v2 新增来源 |
 | 78 | GitHub Action for PR previews | Expo 文档 | 未标日期 | <https://docs.expo.dev/eas-update/github-actions/> | 蓝图 v2 新增来源 |
 | 79 | Weather Report | StrongDM | 2026-09-28 更新 | <https://factory.strongdm.ai/weather-report> | v1-notes.md |
+| 80 | Building a Software Factory | Runway · Alejandro Alvarez | 2026-11-20 | <https://runway.com/news/engineering/building-a-software-factory> | 蓝图 v3 新增来源 |
+| 81 | How OpenAI's Performance Factory keeps ChatGPT fast | OpenAI · Okay Zed, Cyrus Forbes | 2026-11-19 | <https://openai.com/index/how-openai-performance-factory-keeps-chatgpt-fast/> | 蓝图 v3 新增来源 |
+| 82 | Introducing Devin Bots: from tasks to outcomes | Cognition | 2026-11-17 | <https://devin.ai/blog/introducing-devin-bots> | 蓝图 v3 新增来源 |
+| 83 | Using a "chaos loop" to harden the Claude Docs launch | claude.dev · Vivek Nair | 2026-11-17 | <https://claude.dev/blog/chaos-loop-claude-docs-launch/> | 蓝图 v3 新增来源 |
+| 84 | Here are all the components of what people call a software factory | X · @mihail_eric | 2026-11-21 | <https://x.com/mihail_eric/status/2123866740019077553> | 蓝图 v3 新增来源 |
+| 85 | Artificial Intelligence in the Firm: Bottlenecks in Software Production | Fiona Chen, James Stratton · Harvard（工作论文） | 2026-11-19 版 | <https://fion.ac/jellyfish.pdf> | 蓝图 v3 新增来源 |
+| 86 | Thorsten Ball：别再一行行看 diff，先造让你确信的工具 | X · @thorstenball | 2026-11-18 | <https://x.com/thorstenball/status/2123125155568435654> | 蓝图 v3 新增来源 |
+| 87 | Introducing FrontierHarness Eval v1.1 | Runta · Shilin Zhu | 2026-11-17 | <https://runta.com/blog/introducing-frontierharness-eval-v1-1/> | 蓝图 v3 新增来源 |
+| 88 | How AI Agents Become New Targets in GitHub Malware Campaign | Bitdefender Labs | 2026-11-17 | <https://www.bitdefender.com/en-us/blog/labs/how-ai-agents-become-new-targets-in-github-malware-campaign> | 蓝图 v3 新增来源 |
+| 89 | External sandboxes for coding agents | Prime Radiant · Simon Willison | 2026-11-16 | <https://blog.primeradiant.com/external-sandboxes-for-coding-agents/> | 蓝图 v3 新增来源 |
+| 90 | backpass（用会话记录小步修订 AGENTS.md） | GitHub kunchenguid | 未标日期 | <https://github.com/kunchenguid/backpass> | 蓝图 v3 新增来源 |
+| 91 | SkillOpt: Agent skills as trainable parameters | Microsoft Research | 2026-06-30 | <https://www.microsoft.com/en-us/research/blog/skillopt-agent-skills-as-trainable-parameters/> | 蓝图 v3 新增来源 |
+| 92 | We promoted developers into architects without informing them | Mani Doraisamy | 2026-11-20 | <https://manidoraisamy.com/developer-to-architect.html> | 蓝图 v3 新增来源 |
