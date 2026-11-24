@@ -1,6 +1,6 @@
 # Agent 工程实践简报 · 2026-11-19
 
-## 今日概念：Bottleneck / Theory of Constraints（瓶颈 / 约束理论）
+## 今日概念：Bottleneck / Theory of Constraints（瓶颈 / 约束理论）：产出取决于最慢的那一环，先改善瓶颈才有效
 
 **是什么**：一条流水线一天能产出多少，取决于最慢的那一环，不取决于最快的那一环。约束理论（Theory of Constraints）的核心就一句话：先找到瓶颈，再改善瓶颈；在非瓶颈环节提速，只会让活在瓶颈前面越堆越多。
 

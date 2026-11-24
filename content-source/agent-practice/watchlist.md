@@ -142,3 +142,60 @@
 | 待评估 | Mastra Factory（https://github.com/mastra-ai/template-factory ）、StarSling（https://starsling.dev ）、官方插件 session-report / receipts / project-artifact / code-simplifier / hookify | — | 未深入介绍 |
 
 - 官方插件市场快照：2026-11-20 claude-plugins-official 共 317 个插件，下期对比新增。
+
+## 2026-11-21 发现扫描新增
+
+| 项目 | 链接 | 作者 | 关注点 |
+| --- | --- | --- | --- |
+| plugin-eval | https://github.com/openai/plugins/tree/main/plugins/plugin-eval | OpenAI | skill/插件体检：三档 token 预算（trigger / invoke / deferred）、codex exec 基准、改前改后 compare |
+| learn-claude-code | https://github.com/shareAI-lab/learn-claude-code | shareAI-lab | 17 节递进 harness 课（s01 循环 → s17 目标循环）；已从「待评估」转为已介绍 |
+| Chaos loop（claude.dev） | https://claude.dev/blog/chaos-loop-claude-docs-launch/ | Vivek Nair（Anthropic） | 预发环境长时间压测循环、不变量、难撤销改动的审批门、对 agent 可读的监控 |
+| eslint-seatbelt / Notion 棘轮 | https://github.com/justjake/eslint-seatbelt · https://www.notion.com/blog/how-we-evolved-our-code-notions-ratcheting-system-using-custom-eslint-rules | Jake Teton-Landis、Ankit Sardesai（Notion） | lint 违规基线只降不升 |
+| pstack /no-comments | https://github.com/cursor/plugins/blob/main/pstack/skills/no-comments/SKILL.md | poteto | 子 agent 审注释，约束型注释改成类型、测试或 lint |
+| Ankit Gupta 博客 | https://ankitg.me/ | Ankit Gupta | 长时间 autoresearch 循环、验证阶梯、agent 自我复盘 |
+| 待评估 | affaan-m/ECC、rtk-ai/rtk（CLI 输出压缩代理）、headroomlabs-ai/headroom（压缩工具输出）、harbor-framework/harbor（agent 评测框架）、erkamyaman/rust-anything、jmanico/grim-prompter（威胁建模 skill）、Leonxlnx/cook、kyy-logs/code-review-gate-skill、openai/plugins 的 codex-security / test-android-apps、Hamel《"It's Hard to Eval" Is a Product Smell》https://hamel.dev/blog/posts/eval-smell/ 与《Claude's new auto eval tool》https://hamel.dev/blog/posts/claude-auto-evals/ | — | 高星或高相关，但还没介绍 |
+
+- Matt Pocock 的 X 账号 [@mattpocockuk](https://x.com/mattpocockuk) 2026-11-20 正常发帖（「Prompt of the day」系列），上面人名单里写的「suspended」已过时，以后照常扫。
+- Thariq（[@trq212](https://x.com/trq212)，Anthropic）、cat（[@_catwu](https://x.com/_catwu)）加入 X 扫描名单。
+- 官方插件市场快照：2026-11-21 claude-plugins-official 仍为 317 个插件，与 11-20 相比没有增删（plugins-snapshot-2026-11-21.txt）；openai/plugins 共 65 个。
+
+## 2026-11-22 发现扫描新增
+
+| 项目 | 链接 | 作者 | 关注点 |
+| --- | --- | --- | --- |
+| Ponytail | https://github.com/DietrichGebert/ponytail | Dietrich Gebert | 「最懒资深工程师」skill：写代码前的七级阶梯、shortcut 注释记技术债；规则迭代靠成对对比 + 盲评裁判（约 19.6 万星，已介绍） |
+| Hamel《"It's Hard to Eval" Is a Product Smell》 | https://hamel.dev/blog/posts/eval-smell/ | Hamel Husain | 为可核对而设计：出处、假设、未验证清单（已从补课候选转为已介绍） |
+| 软件工厂全景图 | https://x.com/mihail_eric/status/2123866740019077553 | Mihail Eric | 触发 → 分诊 → 规格 → 实现 → 审查 → 验证 → 发布 → 监控；指标：每 PR 成本、周期、人工介入次数 |
+| Mani Doraisamy 博客 | https://manidoraisamy.com/ | Mani Doraisamy | 开发者转架构师：先定架构和数据模型，再约束 AI |
+| Eugene Yan | https://eugeneyan.com/writing/ | Eugene Yan | LLM 裁判、成对比较 vs 直接打分、评测方法综述 |
+| 待评估 | shanraisshan/claude-code-best-practice（约 6.9 万星）、muratcankoylan/Agent-Skills-for-Context-Engineering（约 1.8 万星）、ai-boost/awesome-harness-engineering、FailproofAI/failproofai、colbymchenry/codegraph、stablyai/orca、MiniMax-AI/mcode-stack、phuryn/mini-harness、Matt Pocock /vector skill（发布后看）、Hamel《Claude's new auto eval tool》https://hamel.dev/blog/posts/claude-auto-evals/ | — | 高星或高相关，但还没介绍 |
+
+- 官方插件市场快照：2026-11-22 claude-plugins-official 仍为 317 个插件，与 11-21 相比没有增删（plugins-snapshot-2026-11-22.txt）；openai/plugins 自 11-19 03:14（Asia/Kuala_Lumpur）起无新提交。
+
+## 2026-11-23 发现扫描新增
+
+| 项目 | 链接 | 作者 | 关注点 |
+| --- | --- | --- | --- |
+| 「给代码库除草」prompt | https://x.com/RayFernando1337/status/2124222002076733869 | Ray Fernando（[@RayFernando1337](https://x.com/RayFernando1337)）；poteto 转发 | 翻 git 历史、bug 修复和 review 评论，找重复犯的错，改成结构化检查（4052 收藏，已介绍） |
+| pstack principle-encode-lessons-in-structure / poteto-mode | https://github.com/cursor/plugins/tree/main/pstack/skills | poteto | 第二次写同一条指令就改成 lint、检查或脚本；poteto-mode 是 pstack 总入口 |
+| Hamel《Claude's new auto eval tool》 | https://hamel.dev/blog/posts/claude-auto-evals/ | Hamel Husain | 自动 eval 插件评测：先看数据、一个评估器只管一种错误、要做标注网页（已从补课候选转为已介绍） |
+| Learn Harness Engineering | https://github.com/walkinglabs/learn-harness-engineering | walkinglabs | 14 讲 + 8 个项目的 harness 课程，有简体中文版；最小 harness 四件套（约 2.6 万星，已介绍） |
+| Dragos 研究博客 | https://www.dragos.com/blog/ai-supply-chain-security-canary-tokens | HD Moore（Dragos） | 诱饵凭证追踪 prompt 泄露；AI 路由和转售商风险 |
+| 待评估 | thedotmack/claude-mem（约 11.9 万星）、farion1231/cc-switch（约 15.6 万星）、Egonex-AI/Understand-Anything、tt-a1i/archify、deusyu/harness-engineering（中文 harness 学习档案）、sybil-solutions/skill-distill、EL4CTEO/fast-anything、Skillmeister（@shantanugoel，路由 skill）、Matt Pocock /the-perfect-typescript-codebase skill（发布后看）；此前的 shanraisshan/claude-code-best-practice、muratcankoylan/Agent-Skills-for-Context-Engineering 仍待评估 | — | 高星或高相关，但还没介绍 |
+
+- 官方插件市场快照：2026-11-23 claude-plugins-official 仍为 317 个插件，与 11-22 相比没有增删（plugins-snapshot-2026-11-23.txt）；最新提交是 11-21 09:17（Asia/Kuala_Lumpur）的主题示例更新。openai/plugins 的 plugins/ 目录仍为 62 项，自 11-19 03:14（Asia/Kuala_Lumpur）起无新提交。
+
+## 2026-11-24 发现扫描新增
+
+| 项目 | 链接 | 作者 | 关注点 |
+| --- | --- | --- | --- |
+| Claude Ship（Code Review / PR Steward / Claude Approvals / `/ship`） | https://claude.com/resources/articles/introducing-claude-ship | Anthropic；Boris Cherny 发布 | 审 PR → 修 PR → 按仓库里的策略文件批准；Approvals 先开观察模式（已介绍） |
+| pstack /reframe、/sharpen | https://github.com/cursor/plugins/tree/main/pstack/skills/reframe · https://github.com/cursor/plugins/tree/main/pstack/skills/sharpen | poteto | 教行家术语再重写需求；把任务做深而不是做大（已介绍） |
+| CS146S Week 6「Agent Cost-Optimization」 | https://github.com/mihail911/modern-software-dev-assignments/blob/main/week6/assignment.md | Mihail Eric | 价目表 + 无头运行 + 成本杠杆清单；用没见过的事故评分（已介绍） |
+| 《When Instruction Files Go Stale》 | https://arxiv.org/abs/2611.09802 | Tural Mehtiyev、Biruk Tadesse、Lawrence Arkoh、Wesley Assunção | 文档债：过期指令不影响成功率但多花工具调用，agent 不会修说明书（已介绍） |
+| Full Stack Data Lab 博客 | https://fsdatalab.github.io/blog/ | Shreya Shankar 实验室 | 逐条打分 vs 成对比较、交换顺序一致性（已介绍 ai-score 一篇） |
+| Worktrunk | https://github.com/max-sixty/worktrunk · https://worktrunk.dev | Maximilian Roos（[@max_sixty](https://x.com/max_sixty)） | 并行 agent 用的 worktree CLI、共享构建缓存、每个 worktree 独立端口（约 1.27 万星，已介绍） |
+| 待评估 | NanmiCoder/cc-haha（约 1.55 万星）、generalaction/emdash（约 6300 星）、supabitapp/supacode、johannesjo/parallel-code、savannahfeder/agentbox、paperclipai/paperclip（约 11.6 万星）、NousResearch/hermes-agent、rkkautsar/trace2rules、rjcuff/Woolly、frc9427liu-tech/memrot、Akshay「how to write Agent SKILLS that actually work」（https://x.com/akshay_pachaar/status/2124118137671155887 ，需拿到全文）、Matt Pocock「I've been cooking」（等公开） | — | 高星或高相关，但还没介绍 |
+
+- Shreya Shankar（[@sh_reya](https://x.com/sh_reya)）、Akshay（[@akshay_pachaar](https://x.com/akshay_pachaar)）加入 X 扫描名单。
+- 官方插件市场快照：2026-11-24 claude-plugins-official 仍为 317 个插件，与 11-23 相比没有增删（plugins-snapshot-2026-11-24.txt）；11-23 有 security-guidance 修复、vercel/wix bump、Plugin workflows hardening (#7206) 等提交。openai/plugins 的 plugins/ 目录仍为 62 项，自 11-19 03:14（Asia/Kuala_Lumpur）起无新提交。

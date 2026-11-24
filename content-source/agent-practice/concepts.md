@@ -26,3 +26,7 @@
 | 2026-11-18 | Reward hacking（奖励作弊 / 钻评分的空子） | https://lilianweng.github.io/posts/2024-11-28-reward-hacking/ |
 | 2026-11-19 | Bottleneck / Theory of Constraints（瓶颈 / 约束理论）· AI 让审查成瓶颈 | https://en.wikipedia.org/wiki/Theory_of_constraints ；https://fion.ac/jellyfish.pdf |
 | 2026-11-20 | Threat modeling（威胁建模）· 四个问题 | https://www.threatmodelingmanifesto.org/ ；https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html |
+| 2026-11-21 | Ratchet（棘轮）· 违规数只许减少的基线 | https://www.notion.com/blog/how-we-evolved-our-code-notions-ratcheting-system-using-custom-eslint-rules ；https://github.com/justjake/eslint-seatbelt |
+| 2026-11-22 | Pairwise comparison（成对比较）· 不打绝对分，只问 A 和 B 哪个更好 | https://eugeneyan.com/writing/llm-evaluators/ |
+| 2026-11-23 | Error analysis（错误分析）· 开放编码 / 轴向编码 / 理论饱和 | https://hamel.dev/blog/posts/evals-faq/why-is-error-analysis-so-important-in-llm-evals-and-how-is-it-performed.html |
+| 2026-11-24 | Shadow mode（影子模式）· 只记录不生效，对比够了再放权 | https://alexgude.com/blog/machine-learning-deployment-shadow-mode/ ；https://martinfowler.com/bliki/DarkLaunching.html |
