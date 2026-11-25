@@ -30,3 +30,4 @@
 | 2026-11-22 | Pairwise comparison（成对比较）· 不打绝对分，只问 A 和 B 哪个更好 | https://eugeneyan.com/writing/llm-evaluators/ |
 | 2026-11-23 | Error analysis（错误分析）· 开放编码 / 轴向编码 / 理论饱和 | https://hamel.dev/blog/posts/evals-faq/why-is-error-analysis-so-important-in-llm-evals-and-how-is-it-performed.html |
 | 2026-11-24 | Shadow mode（影子模式）· 只记录不生效，对比够了再放权 | https://alexgude.com/blog/machine-learning-deployment-shadow-mode/ ；https://martinfowler.com/bliki/DarkLaunching.html |
+| 2026-11-25 | Sandbox（沙箱）· 文件隔离 + 网络隔离，由操作系统强制执行 | https://www.anthropic.com/engineering/claude-code-sandboxing ；https://code.claude.com/docs/en/sandboxing |

@@ -199,3 +199,23 @@
 
 - Shreya Shankar（[@sh_reya](https://x.com/sh_reya)）、Akshay（[@akshay_pachaar](https://x.com/akshay_pachaar)）加入 X 扫描名单。
 - 官方插件市场快照：2026-11-24 claude-plugins-official 仍为 317 个插件，与 11-23 相比没有增删（plugins-snapshot-2026-11-24.txt）；11-23 有 security-guidance 修复、vercel/wix bump、Plugin workflows hardening (#7206) 等提交。openai/plugins 的 plugins/ 目录仍为 62 项，自 11-19 03:14（Asia/Kuala_Lumpur）起无新提交。
+
+## 大厂工程博客（2026-11-25 加入，冻鱼推荐；只收和 agent 工程实践相关的文章）
+- Uber Engineering：https://www.uber.com/blog/engineering/ ，X @UberEng
+- Shopify Engineering：https://shopify.engineering/ ，X @ShopifyEng
+- Airbnb Engineering：https://medium.com/airbnb-engineering ，X @AirbnbEng
+- Meta Engineering：https://engineering.fb.com/ ，X @Meta_Engineers
+- Netflix TechBlog：https://netflixtechblog.com/ ，X @NetflixEng
+（来源：meng shao @shao__meng 2026-11-24 的帖子及评论）
+
+## 2026-11-25 新增
+| 名称 | 链接 | 作者 | 备注 |
+| --- | --- | --- | --- |
+| Siren（沙箱逃逸倾向评测） | https://safeguards.anthropic.com/2026/siren/ | Oscar O'Rahilly、Darya Kaviani（Anthropic） | 在系统提示里写清沙箱规则 + 「缺东西就停下来说」，越界率降 68%–96%（已介绍） |
+| Anthropic 企业 coding agent 安全指南 | https://claude.com/resources/articles/enterprise-guide-to-securing-coding-agents | Anthropic | 六个问题自查表、failIfUnavailable、least agency（已介绍） |
+| Skills over MCP / Tasks / Elicitation | https://claude.com/resources/articles/skills-over-mcp-tasks-and-more | Anthropic | MCP 服务器自带 skill；claude.ai 连接器 + skill 合并为插件（已介绍） |
+| 宝玉 | https://x.com/dotey | 宝玉（@dotey） | 中文一线实践者，验证五条经验（已介绍 2124603209394078089），加入 X 扫描名单 |
+| Pekka Enberg | https://x.com/penberg | Pekka Enberg（@penberg） | 验证阶梯：测试 → 形式化 → 读规格（已介绍），加入 X 扫描名单 |
+| 待评估 | imuratalpay/ui-diff（约 139 星，UI PR 前后截图 + 像素差异）、AyushRajSinghParihar/weaponized-curiosity（约 168 星）、jvasic/claude-queue、koorchik/swarmy、bluesky-social/diderot、sybil-solutions/inference-optimisation-skill（约 2569 星，推理调优）、morluto/rea（约 47.7 万星，agent 逆向工程，超出本简报主题）、Kent C. Dodds「PRs are going away」视频（https://x.com/kentcdodds/status/2125272609193673186 ，未看） | — | 高星或高相关，但还没介绍 |
+
+- 官方插件市场快照：2026-11-25 claude-plugins-official 仍为 317 个插件，与 11-24 相比没有增删（plugins-snapshot-2026-11-25.txt）；11-24 有 Claude Security 插件 v0.13.0、bigquery-data-analytics 源迁移等提交。openai/plugins 的 plugins/ 目录仍为 62 项，自 11-19 03:14（Asia/Kuala_Lumpur）起无新提交。
