@@ -219,3 +219,16 @@
 | 待评估 | imuratalpay/ui-diff（约 139 星，UI PR 前后截图 + 像素差异）、AyushRajSinghParihar/weaponized-curiosity（约 168 星）、jvasic/claude-queue、koorchik/swarmy、bluesky-social/diderot、sybil-solutions/inference-optimisation-skill（约 2569 星，推理调优）、morluto/rea（约 47.7 万星，agent 逆向工程，超出本简报主题）、Kent C. Dodds「PRs are going away」视频（https://x.com/kentcdodds/status/2125272609193673186 ，未看） | — | 高星或高相关，但还没介绍 |
 
 - 官方插件市场快照：2026-11-25 claude-plugins-official 仍为 317 个插件，与 11-24 相比没有增删（plugins-snapshot-2026-11-25.txt）；11-24 有 Claude Security 插件 v0.13.0、bigquery-data-analytics 源迁移等提交。openai/plugins 的 plugins/ 目录仍为 62 项，自 11-19 03:14（Asia/Kuala_Lumpur）起无新提交。
+
+## 2026-11-26 新增
+| 名称 | 链接 | 作者 | 备注 |
+| --- | --- | --- | --- |
+| 《Migrating our Messages API to Rust》 | https://www.anthropic.com/research/migrating-api-to-rust | Lance Martin、Jake Eaton 等（Anthropic） | 生产系统当验证器；checkpoint + 指纹；内层 / 外层 / 记忆三层循环；100 多处被改弱的断言（已介绍） |
+| NVIDIA SkillSpector | https://github.com/NVIDIA/SkillSpector | NVIDIA | 装 skill 前的静态扫描器，约 2.77 万星，17 类 71 种模式（补课，已介绍） |
+| Claude Code `PreSkillShellCommand` hook | https://code.claude.com/docs/en/hooks | Anthropic | v2.1.332 起可拦截 skill 加载时的注入命令，只能拦不能放行（已介绍） |
+| Artificial Analysis Coding Agent Index · Harness Comparisons | https://artificialanalysis.ai/methodology/coding-agents-benchmarking · https://x.com/ArtificialAnlys | Artificial Analysis（@ArtificialAnlys） | 固定模型只换 harness；花费差异大于分数差异（已介绍），加入 X 扫描名单 |
+| shrink-anything | https://github.com/EL4CTEO/shrink-anything | EL4CTEO | 删死代码 + 跑你的测试 + 测试数不许变少（约 279 星，已介绍） |
+| Jason Wei 博客 | https://www.jasonwei.net/blog/asymmetry-of-verification-and-verifiers-law | Jason Wei | 验证不对称 / verifier's rule（今日概念入门原文） |
+| 待评估 | ertembiyik/xcslot（约 91 星，并行 worktree 复用 Xcode 构建缓存，和冻鱼的移动端开发相关）、Developing-Gamer/agent-sim（约 597 星，Linux 上的 iOS 模拟器 + MCP，早期）、usejog/joggernaut、orkhanfarmanli/orchestrate-skills、Larusajs/Handoff-Check、chszlab AgenticAlgorithmEngineering（HN 70 分）、jayd.ml Rockbox 移植 + auto-rockbox 工具包（https://jayd.ml/2026/11/14/rockbox-on-yp3.html ）、Forever Security「AGENTS.md 植入让 Codex 关掉审批」报告（未找到原文） | — | 高星或高相关，但还没介绍 |
+
+- 官方插件市场快照：2026-11-26 claude-plugins-official 仍为 317 个插件，与 11-25 相比没有增删（plugins-snapshot-2026-11-26.txt）；11-25 只有 Claude Security 插件 v0.13.1 提交。openai/plugins 的 plugins/ 目录仍为 62 项，自 11-19 03:14（Asia/Kuala_Lumpur）起无新提交。
