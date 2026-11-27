@@ -232,3 +232,17 @@
 | 待评估 | ertembiyik/xcslot（约 91 星，并行 worktree 复用 Xcode 构建缓存，和冻鱼的移动端开发相关）、Developing-Gamer/agent-sim（约 597 星，Linux 上的 iOS 模拟器 + MCP，早期）、usejog/joggernaut、orkhanfarmanli/orchestrate-skills、Larusajs/Handoff-Check、chszlab AgenticAlgorithmEngineering（HN 70 分）、jayd.ml Rockbox 移植 + auto-rockbox 工具包（https://jayd.ml/2026/11/14/rockbox-on-yp3.html ）、Forever Security「AGENTS.md 植入让 Codex 关掉审批」报告（未找到原文） | — | 高星或高相关，但还没介绍 |
 
 - 官方插件市场快照：2026-11-26 claude-plugins-official 仍为 317 个插件，与 11-25 相比没有增删（plugins-snapshot-2026-11-26.txt）；11-25 只有 Claude Security 插件 v0.13.1 提交。openai/plugins 的 plugins/ 目录仍为 62 项，自 11-19 03:14（Asia/Kuala_Lumpur）起无新提交。
+
+## 2026-11-27 新增
+| 名称 | 链接 | 作者 | 备注 |
+| --- | --- | --- | --- |
+| Off the Laptop（CS146S W8 幻灯片） | https://off-the-laptop.rajesh.workers.dev/ | Rajesh Bhatia（Cloudflare） | 后台 agent 七条原则：等待免费 / 原路回复 / 醒来先看现实 / 密钥不进沙箱 / 安全在模型外 / 只为决策和失败打扰人 / 重复活写成代码（已介绍）；讲座录像「Recording soon」，出了再看 |
+| 《Building always-on agents》 | https://claude.com/resources/articles/building-always-on-agents | William Hu（Anthropic） | 事件收件箱 / 定时器 / 记忆 / 权限 / 发件箱五部件（补课，已介绍） |
+| NVIDIA SkillEvaluator | https://github.com/NVIDIA/SkillEvaluator | NVIDIA | skill 质量分 + harness-check + 装/不装对比的 Skill Lift，约 4583 星（补课，已介绍） |
+| Notion 官方 MCP 注入推销指令（用户报告） | https://www.reddit.com/r/ClaudeCode/comments/1y4qm5o/heads_up_if_you_wire_notions_official_mcp_into/ | r/ClaudeCode 用户 | 工具返回内容当数据；可疑 MCP 只在 subagent 里调用（已介绍，未独立复现） |
+| skill-distill | https://github.com/sybil-solutions/skill-distill | sybil-solutions | 会话蒸馏成 skill + 学生模型三次验证，约 920 星（从待评估转为已介绍） |
+| T3 Code | https://github.com/pingdotgg/t3code | pingdotgg | 多 agent 控制面板，每任务一个 worktree，手机批准；默认 Full access，约 8.1 万星（补课，已介绍） |
+| Mihail Eric | https://x.com/mihail_eric | Mihail Eric | CS146S 每周嘉宾讲座总结帖，继续每期扫 |
+| 待评估 | Donchitos/Claude-Code-Game-Studios（约 4.1 万星，49 个角色 agent + 75 个 skill 的游戏工作室模板，偏游戏）、zucchini-chat/one-fact-one-place（「同一事实只在一处」的 pre-commit hook）、xtong629/trellis-agent（约 103 星，eval 优先的小 agent 框架）、Google Workspace MCP 强制令（https://techstackups.com/articles/google-workspace-ai-agents-mcp/ ，平台政策） | — | 高星或高相关，但还没介绍 |
+
+- 官方插件市场快照：2026-11-27 claude-plugins-official 仍为 317 个插件，与 11-26 相比没有增删（plugins-snapshot-2026-11-27.txt）；11-26 以来无新提交（最后一次是 Claude Security v0.13.1，11-26 06:51 Asia/Kuala_Lumpur 合并）。openai/plugins 的 plugins/ 目录仍为 62 项，自 11-19 03:14（Asia/Kuala_Lumpur）起无新提交。
