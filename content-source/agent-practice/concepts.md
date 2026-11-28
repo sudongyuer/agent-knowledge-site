@@ -33,3 +33,4 @@
 | 2026-11-25 | Sandbox（沙箱）· 文件隔离 + 网络隔离，由操作系统强制执行 | https://www.anthropic.com/engineering/claude-code-sandboxing ；https://code.claude.com/docs/en/sandboxing |
 | 2026-11-26 | Generator–verifier gap（生成-验证差距）· 验证不对称：检查答案往往比做出答案容易，验证才是瓶颈 | https://www.jasonwei.net/blog/asymmetry-of-verification-and-verifiers-law ；https://www.anthropic.com/research/migrating-api-to-rust |
 | 2026-11-27 | Idempotency（幂等）· 做一次和做十次结果一样，出错可放心重试；幂等键 / 事件去重 | https://stripe.com/blog/idempotency ；https://off-the-laptop.rajesh.workers.dev/ |
+| 2026-11-28 | Mutation testing（变异测试）· 故意埋小 bug 看测试能不能抓到；杀死 / 存活变异体、变异分数 | https://testing.googleblog.com/2021/04/mutation-testing.html ；https://stryker-mutator.io/docs/ |

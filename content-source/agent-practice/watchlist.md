@@ -2,6 +2,33 @@
 
 维护给冻鱼的简报源。每期先查这些人/站点近 1–2 周是否有可照做的工程材料，再写条目。
 
+## X 活跃列表「Agent 工程」（list ID: 2114664411323314314）
+
+冻鱼的 X 列表：[Agent 工程](https://x.com/i/lists/2114664411323314314)。已接入每日简报扫描：每期先拉该列表近 1–2 天的实质帖，再交叉核对仓库、博客和课程源。
+
+- 原有 24 人：ClaudeDevs, thsottiaux, ArtificialAnlys, cursor_ai, OpenAIDevs, AnthropicAI, GoogleDeepMind, OpenAI, thdxr, poteto, hwchase17, HamelHusain, ericzakariasson, thorstenball, trq212, mattpocockuk, bcherny, yetone, amorriscode, addyosmani, karpathy, swyx, dotey, simonw
+- 2026-11-27 新增 17 人（已用 `get_lists_members` 核实，列表当时共 41 人）：
+
+| 名字 | 句柄 | user_id | 分组 |
+| --- | --- | --- | --- |
+| Pekka Enberg | [@penberg](https://x.com/penberg) | 101568361 | 组 1：做工具 / 实战 |
+| Charlie Marsh | [@charliermarsh](https://x.com/charliermarsh) | 23191588 | 组 1：做工具 / 实战 |
+| Peter Steinberger | [@steipete](https://x.com/steipete) | 25401953 | 组 1：做工具 / 实战 |
+| Dex Horthy | [@dexhorthy](https://x.com/dexhorthy) | 820679805259550720 | 组 1：做工具 / 实战 |
+| Kun Chen | [@kunchenguid](https://x.com/kunchenguid) | 1433268230819176451 | 组 1：做工具 / 实战 |
+| Shantanu Goel | [@shantanugoel](https://x.com/shantanugoel) | 14274934 | 组 1：做工具 / 实战 |
+| meng shao | [@shao__meng](https://x.com/shao__meng) | 1727548535816724480 | 组 1：做工具 / 实战 |
+| Kent C. Dodds | [@kentcdodds](https://x.com/kentcdodds) | 389681470 | 组 1：做工具 / 实战 |
+| Mitchell Hashimoto | [@mitchellh](https://x.com/mitchellh) | 12819682 | 组 1：做工具 / 实战 |
+| Kieran Klaassen | [@kieranklaassen](https://x.com/kieranklaassen) | 14406166 | 组 1：做工具 / 实战 |
+| Jesse Vincent | [@obra](https://x.com/obra) | 289403 | 组 1：做工具 / 实战 |
+| Mario Zechner | [@badlogicgames](https://x.com/badlogicgames) | 189876762 | 组 1：做工具 / 实战 |
+| Mihail Eric | [@mihail_eric](https://x.com/mihail_eric) | 771267202762670081 | 组 2：模型 / 评测 / 课程 |
+| Eugene Yan | [@eugeneyan](https://x.com/eugeneyan) | 35109534 | 组 2：模型 / 评测 / 课程 |
+| Shreya Shankar | [@sh_reya](https://x.com/sh_reya) | 2286218053 | 组 2：模型 / 评测 / 课程 |
+| Jason Wei | [@_jasonwei](https://x.com/_jasonwei) | 1319101874532978690 | 组 2：模型 / 评测 / 课程 |
+| Uber Engineering | [@UberEng](https://x.com/UberEng) | 2573880420 | 可选：大厂工程号 |
+
 ## 人（X / 博客）
 
 | 名字 | 句柄 / 站点 | 关注主题 |
@@ -246,3 +273,18 @@
 | 待评估 | Donchitos/Claude-Code-Game-Studios（约 4.1 万星，49 个角色 agent + 75 个 skill 的游戏工作室模板，偏游戏）、zucchini-chat/one-fact-one-place（「同一事实只在一处」的 pre-commit hook）、xtong629/trellis-agent（约 103 星，eval 优先的小 agent 框架）、Google Workspace MCP 强制令（https://techstackups.com/articles/google-workspace-ai-agents-mcp/ ，平台政策） | — | 高星或高相关，但还没介绍 |
 
 - 官方插件市场快照：2026-11-27 claude-plugins-official 仍为 317 个插件，与 11-26 相比没有增删（plugins-snapshot-2026-11-27.txt）；11-26 以来无新提交（最后一次是 Claude Security v0.13.1，11-26 06:51 Asia/Kuala_Lumpur 合并）。openai/plugins 的 plugins/ 目录仍为 62 项，自 11-19 03:14（Asia/Kuala_Lumpur）起无新提交。
+
+## 2026-11-28 新增
+| 名称 | 链接 | 作者 | 备注 |
+| --- | --- | --- | --- |
+| 《How Uber Evals 1 Million Agent Skill Invocations a Month》 | https://www.uber.com/us/en/blog/optimizing-ubers-agent-skills/ | Andrew Mager、Jason Varbedian、Uday Kiran Medisetty（Uber） | skill lint、eval 配比 5/80/15、装/不装盲评消融、papercut 自报 bug（补课，已介绍） |
+| Hurdle | https://github.com/togethercomputer/hurdle · https://www.together.ai/blog/introducing-hurdle-run-agent-evals-on-your-api-skills-and-docs | Together AI（Mo King、Sam Barrowclough、Hassan El Mghari） | 让 Claude Code / Codex 在你的 API、文档、skill 上做任务；代码检查 + guard + 裁判；约 18 星（已介绍） |
+| Convex 插件 skill 外发 / 绕过安全分类器 issue | https://github.com/convex/convex-backend-skill/issues/64 | thirtysix | 官方市场插件，HN 225 分；仍未修复（已介绍，持续关注官方回复） |
+| 100x-engineer-skill | https://github.com/DeadInternetStudios/100x-engineer-skill | DeadInternetStudios | 验证台账 + 代码哈希过期 + 每条检查须先在埋好的 bug 上失败一次；约 874 星，作者自述数据未独立验证（已介绍） |
+| Netflix QCon SF 2026「Retrofitting the SDLC for AI Coding Agents」 | https://www.infoq.com/news/2026/11/netflix-sdlc-ai-coding-agents/ | Mark Khuzam（Netflix），InfoQ 报道 | 45 份写给 agent 的 ADR；审查 agent 只发有证据的阻断问题（补课，已介绍） |
+| 《How we rebuilt the Shopify app in 12 weeks》 | https://shopify.engineering/shopify-app-rebuild | Remi Vanhee（Shopify） | 不开模拟器的快速反馈；「文档解释规则，CI 判定规则」（补课，已介绍） |
+| Philipp Schmid | https://x.com/_philschmid | Philipp Schmid（Google DeepMind） | 新的高活跃实践者，建议加入 X 列表；《Why I'm Bullish on MCP for 2027》（MCP outputSchema + Code Mode、MCP Events）待结合实践再讲 |
+| Michele Catasta | https://x.com/pirroh | Michele Catasta（Replit） | 新的高活跃实践者，建议加入 X 列表；CS146S 讲座：让模型决定怎么拆任务、先投资验证 |
+| 待评估 | Shopify《Reflex》（https://shopify.engineering/reflex ，agent 友好的移动端架构，和冻鱼的移动端工作相关）、Airbnb cost per task（https://aws.amazon.com/blogs/machine-learning/how-airbnb-uses-cost-per-task-to-operate-coding-agents-on-amazon-bedrock/ ）、burnjohn/evals-workshop（eval 当合并门槛）、Mustafa Suleyman《AI Containment: 10 practical steps》（https://x.com/mustafasuleyman/status/2126412600816943385 ）、LessWrong「Models Can Communicate via Inference Servers Despite Being Sandboxed」、cr.yp.to「False computer-checked proofs」 | — | 高相关，但还没介绍 |
+
+- 官方插件市场快照：2026-11-28 claude-plugins-official 仍为 317 个插件，与 11-27 相比没有增删（plugins-snapshot-2026-11-28.txt）；最新提交仍是 Claude Security v0.13.1（11-26 06:51 Asia/Kuala_Lumpur 合并）。openai/plugins 的 plugins/ 目录仍为 62 项，自 11-19 03:14（Asia/Kuala_Lumpur）起无新提交。
